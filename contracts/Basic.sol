@@ -4,7 +4,7 @@ import "./Mortal.sol";
 
 contract Basic is Mortal {
   struct ProofEntry {
-    address owner;
+    string owner;
     string privateKey;
     string previousTrackingId;
   }
