@@ -8,6 +8,10 @@ contract Basic is Mortal {
     string privateKey;
     string previousTrackingId;
   }
+  bytes32 root;
+  root = keccak256("root");
+  //'root', variable of the type bytes32 stores
+  //hash of the word "root"
 
   // map of trackingId to proofEntry
   mapping (string => ProofEntry) private proofs;
@@ -68,4 +72,5 @@ contract Basic is Mortal {
       return getProofInternal(trackingId).previousTrackingId;
     }
   }
+
 }
