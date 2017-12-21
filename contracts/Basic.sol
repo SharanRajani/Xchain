@@ -10,7 +10,8 @@ contract Basic {
   // map of trackingId to proofEntry
   mapping (string => ProofEntry) private proofs;
 
-  event TransferCompleted(
+
+  event transferCompleted(
     address from,
     address to,
     string trackingId,
