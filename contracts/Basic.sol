@@ -3,8 +3,7 @@ pragma solidity ^0.4.4;
 contract Basic {
   struct ProofEntry {
     address owner;
-    string encryptedProof;
-    string publicProof;
+    string privateKey;
     string previousTrackingId;
   }
 
