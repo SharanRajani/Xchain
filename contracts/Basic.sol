@@ -11,7 +11,7 @@ contract Basic is Mortal {
 
   // map of trackingId to proofEntry
   mapping (string => ProofEntry) private proofs;
-
+  mapping (string => string) private items;
 
   event transferCompleted(
     address from,
