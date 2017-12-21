@@ -1,6 +1,8 @@
 pragma solidity ^0.4.4;
 
-contract Basic {
+import "./Mortal.sol";
+
+contract Basic is Mortal {
   struct ProofEntry {
     address owner;
     string privateKey;
