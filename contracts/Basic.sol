@@ -40,27 +40,19 @@ contract Basic is Mortal {
     throw;
   }
 
-  function getProof(string trackingId) constant returns(address owner, string encryptedProof, string publicProof, string previousTrackingId) {
+  function getProof(string trackingId) constant returns(address owner, string privateKey, string previousTrackingId) {
     if (hasProof(trackingId)) {
       ProofEntry memory pe = getProofInternal(trackingId);
       owner = pe.owner;
-      encryptedProof = pe.encryptedProof;
-      publicProof = pe.publicProof;
+      privateKey = pe.privateKey;
       previousTrackingId = pe.previousTrackingId;
     }
   }
 
   // returns the encrypted part of the proof
-  function getEncryptedProof(string trackingId) constant returns(string encryptedProof) {
+  function getprivateKey(string trackingId) constant returns(string privateKey) {
     if (hasProof(trackingId)) {
-      return getProofInternal(trackingId).encryptedProof;
-    }
-  }
-
-  // returns the public part of the proof
-  function getPublicProof(string trackingId) constant returns(string publicProof) {
-    if (hasProof(trackingId)) {
-      return getProofInternal(trackingId).publicProof;
+      return getProofInternal(trackingId).privateKey;
     }
   }
 
