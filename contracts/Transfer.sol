@@ -2,7 +2,7 @@ pragma solidity ^0.4.4;
 
 import "./Basic.sol";
 
-contract transfer is Basic{
+contract Transfer is Basic{
 
 function transferProof(string newTrackingId, string trackingId, string privateKey, address newOwner)public returns(bool success) {
 
