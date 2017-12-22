@@ -19,9 +19,9 @@ contract Basic is Mortal {
   //hash of the word "root"
 
   // map of trackingId to proofEntry
-  mapping (bytes32 => ProofEntry) proofs;
-  mapping (string => bytes32) items;
-  mapping (bytes32 => registerEntry) register;
+  mapping (bytes32 => ProofEntry) proofs; // trackingId to ownerBlock
+  mapping (string => bytes32) items;  // productId to trackingId
+  mapping (bytes32 => registerEntry) register; // ownerHash to registerEntry
 
   event transferCompleted(
     bytes32 from,
