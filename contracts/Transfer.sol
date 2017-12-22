@@ -2,24 +2,29 @@ pragma solidity ^0.4.4;
 
 import "./Basic.sol";
 
+contract transfer is Basic{
 
-function transferProof(string newTrackingId, string trackingId, string encryptedProof, string publicProof, address newOwner) returns(bool success) {
+function transferProof(string newTrackingId, string trackingId, string privateKey, address newOwner)public returns(bool success) {
 
-//if (sha3(trackingId) != sha3("root")) {
+if (keccak256(trackingId) != keccak256("root")) {
   if (hasProof(trackingId)) {
     ProofEntry memory pe = getProofInternal(trackingId);
     if (msg.sender != pe.owner) {
       return false;
     }
+  }
 
       if (hasProof(newTrackingId)) {
         // already exists- return
         return false;
       }
 
-  proofs[newTrackingId] = ProofEntry(newOwner, encryptedProof, publicProof, trackingId);
-  TransferCompleted(msg.sender, newOwner, newTrackingId, trackingId);
+  proofs[newTrackingId].owner = newOwner;
+  proofs[newTrackingId].privateKey=privateKey;
+  proofs[newTrackingId].previousTrackingId=trackingId;
+  transferCompleted(msg.sender, newOwner, newTrackingId, trackingId, proofs[newTrackingId].previousTrackingId);
   return true;
 
-
+}
+}
 }
