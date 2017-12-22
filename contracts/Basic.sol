@@ -8,6 +8,11 @@ contract Basic is Mortal {
     bytes32 privateKey;
     bytes32 previousTrackingId;
   }
+  struct registerEntry{
+    bytes32 owner;
+    bytes32 privateKey;
+  }
+
   bytes32 root;
   root = keccak256("root");
   //'root', variable of the type bytes32 stores
@@ -16,10 +21,11 @@ contract Basic is Mortal {
   // map of trackingId to proofEntry
   mapping (bytes32 => ProofEntry) proofs;
   mapping (string => bytes32) items;
+  mapping (bytes32 => registerEntry) register;
 
   event transferCompleted(
-    address from,
-    address to,
+    bytes32 from,
+    bytes32 to,
     bytes32 trackingId,
     bytes32 previousTrackingId
   );
@@ -30,10 +36,31 @@ contract Basic is Mortal {
   }
 
   // returns true if proof is stored
-  function hasProof(bytes32 trackingId) constant internal returns(bool exists) {
-    return proofs[trackingId].owner != address(0);
+  function hasProof(bytes32 trackingId) constant internal returns(bool) {
+    if(proofs[trackingId].owner != "")
+    {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
+  function getRoot() constant internal return (bytes32) {
+    return root;
+  }
+
+  // returns true if entry exist
+  function hasEntry(string productId) constant internal returns(bool) {
+    bytes32 check = items[productId];
+    if(check == "")
+    {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
 
   // returns the proof
   function getProofInternal(bytes32 trackingId) constant internal returns(ProofEntry proof) {
@@ -45,7 +72,7 @@ contract Basic is Mortal {
     throw;
   }
 
-  function getProof(bytes32 trackingId) constant returns(address owner, bytes32 privateKey, bytes32 previousTrackingId) {
+  function getProof(bytes32 trackingId) constant returns(bytes32 owner, bytes32 privateKey, bytes32 previousTrackingId) {
     if (hasProof(trackingId)) {
       ProofEntry memory pe = getProofInternal(trackingId);
       owner = pe.owner;
@@ -61,7 +88,7 @@ contract Basic is Mortal {
     }
   }
 
-  function getOwner(bytes32 trackingId) constant returns(address owner) {
+  function getOwner(bytes32 trackingId) constant returns(bytes32 owner) {
     if (hasProof(trackingId)) {
       return getProofInternal(trackingId).owner;
     }
