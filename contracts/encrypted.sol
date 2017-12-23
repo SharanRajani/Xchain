@@ -4,14 +4,13 @@ import "./Basic.sol";
 
 contract encrypt is Basic {
 
-    function addProduct(string password, string productId) public {
+    function addProduct(string password, string productId) public pure returns (bytes32, bytes32, bytes32, bytes32) {
 
         bytes32 ownerHash = keccak256(bytes32ToString(keccak256(password)));
         bytes32 privateKeyHash =  keccak256(password);
         bytes32 previousTrackingId = keccak256("root");
         bytes32 trackingId = keccak256(productId);
-        proofs[trackingId] = ProofEntry(ownerHash, privateKeyHash, previousTrackingId);
-        // return (ownerHash,privateKeyHash,previousTrackingId,trackingId);
+        return (ownerHash,privateKeyHash,previousTrackingId,trackingId);
     }
     function registerUser(string password) public {
         bytes32 owner = keccak256(bytes32ToString(keccak256(password)));
@@ -20,7 +19,9 @@ contract encrypt is Basic {
 
     }
 
-
+    function getRegisterStruct(bytes32 ownerHash)  public returns (bytes32, bytes32){
+        return (register[ownerHash].owner, register[ownerHash].privateKey);
+    }
 
 
     function bytes32ToString(bytes32 x) public pure returns (string) {
