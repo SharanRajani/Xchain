@@ -29,6 +29,7 @@ contract TransferOwnership is Basic, encrypt{
     proofs[newTrackingId].privateKey=register[newOwner].privateKey;
     proofs[newTrackingId].previousTrackingId=trackingId;
     transferCompleted(owner, newOwner, newTrackingId, proofs[newTrackingId].previousTrackingId);
+    items[productId]=newTrackingId;
     return true;
 
 
