@@ -11,14 +11,14 @@ contract TransferOwnership is Basic, encrypt{
     bytes32 trackingId;
 
     if (previousTrackingId != keccak256("root")) {
-    trackingId=keccak256(bytes32toString(previousTrackingId));
+    trackingId=keccak256(bytes32ToString(previousTrackingId));
     }
     else
     {
     trackingId=keccak256(productId);
     }
 
-    bytes32 newTrackingId=keccak256(bytes32toString(trackingId));
+    bytes32 newTrackingId=keccak256(bytes32ToString(trackingId));
 
     if (hasProof(newTrackingId)) {
     // already exists- return
