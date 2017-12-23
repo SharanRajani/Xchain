@@ -7,8 +7,8 @@ import "./TransferOwnership.sol";
 contract Transfer is Basic{
 
   function transfer(bytes32 newOwner,string info,string productId){
-    if(verify(info,productId)==true){
-    transferProof(proofs[trackingId].owner,proofs[trackingId].previousTrackingId, newOwner,productId);
+    if(verify(info, productId)==true){
+    transferProof(proofs[trackingId].owner,proofs[trackingId].previousTrackingId, newOwner, productId);
     }
   }
 }
