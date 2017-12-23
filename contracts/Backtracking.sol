@@ -8,7 +8,7 @@ contract Backtracking is Basic {
     uint count=0;
     bytes32[128] ownerAddresses;
     bytes32 trackingId = items[itemId];
-    string root = getRoot();
+    bytes32 root = getRoot();
     while( trackingId != root )
     {
       ProofEntry p1= proofs[trackingId];
