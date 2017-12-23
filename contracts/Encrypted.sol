@@ -39,5 +39,6 @@ contract encrypt is Basic {
     }
     return string(bytesStringTrimmed);
 }
+//testing 
 
 }
