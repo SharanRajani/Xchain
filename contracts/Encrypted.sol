@@ -11,12 +11,18 @@ contract encrypt is Basic {
         bytes32 previousTrackingId = keccak256("root");
         bytes32 trackingId = keccak256(productId);
         proofs[trackingId] = ProofEntry(ownerHash, privateKeyHash, previousTrackingId);
+        // return (ownerHash,privateKeyHash,previousTrackingId,trackingId);
     }
     function registerUser(string password) public {
         bytes32 owner = keccak256(bytes32ToString(keccak256(password)));
         bytes32 privateKey = keccak256(password);
         register[owner] = registerEntry(owner , privateKey);
+    }
 
+    function fetchOwnerHash(string password) public pure returns (bytes32, bytes32){
+        bytes32 owner = keccak256(bytes32ToString(keccak256(password)));
+        bytes32 privateKey = keccak256(password);
+        return (owner, privateKey);
     }
 
 
@@ -38,6 +44,5 @@ contract encrypt is Basic {
     }
     return string(bytesStringTrimmed);
 }
-//testing 
 
 }
