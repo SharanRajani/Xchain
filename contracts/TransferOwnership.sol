@@ -1,7 +1,7 @@
 pragma solidity ^0.4.4;
 
 import "./Basic.sol";
-import "./encrypted.sol";
+import "./Encrypted.sol";
 
 
 contract TransferOwnership is Basic, encrypted{

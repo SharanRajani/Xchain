@@ -13,8 +13,7 @@ contract Basic is Mortal {
     bytes32 privateKey;
   }
 
-  bytes32 root;
-  root = keccak256("root");
+  bytes32 root = keccak256("root");
   //'root', variable of the type bytes32 stores
   //hash of the word "root"
 
@@ -46,7 +45,7 @@ contract Basic is Mortal {
     }
   }
 
-  function getRoot() constant internal return (bytes32) {
+  function getRoot() constant internal returns (bytes32) {
     return root;
   }
 
