@@ -21,8 +21,7 @@ contract encrypt is Basic {
 
     function fetchOwnerHash(string password) public pure returns (bytes32, bytes32){
         bytes32 owner = keccak256(bytes32ToString(keccak256(password)));
-        bytes32 privateKey = keccak256(password);
-        return (owner, privateKey);
+        return owner;
     }
 
 
