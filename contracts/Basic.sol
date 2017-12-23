@@ -71,7 +71,7 @@ contract Basic is Mortal {
     throw;
   }
 
-  function getProof(bytes32 trackingId) constant returns(bytes32 owner, bytes32 privateKey, bytes32 previousTrackingId) {
+  function getProof(bytes32 trackingId) constant internal returns(bytes32 owner, bytes32 privateKey, bytes32 previousTrackingId) {
     if (hasProof(trackingId)) {
       ProofEntry memory pe = getProofInternal(trackingId);
       owner = pe.owner;
@@ -81,19 +81,19 @@ contract Basic is Mortal {
   }
 
   // returns the encrypted part of the proof
-  function getprivateKey(bytes32 trackingId) constant returns(bytes32 privateKey) {
+  function getprivateKey(bytes32 trackingId) constant internal returns(bytes32 privateKey) {
     if (hasProof(trackingId)) {
       return getProofInternal(trackingId).privateKey;
     }
   }
 
-  function getOwner(bytes32 trackingId) constant returns(bytes32 owner) {
+  function getOwner(bytes32 trackingId) constant internal returns(bytes32 owner) {
     if (hasProof(trackingId)) {
       return getProofInternal(trackingId).owner;
     }
   }
 
-  function getPreviousTrackingId(bytes32 trackingId) constant returns(bytes32 previousTrackingId) {
+  function getPreviousTrackingId(bytes32 trackingId) constant internal returns(bytes32 previousTrackingId) {
     if (hasProof(trackingId)) {
       return getProofInternal(trackingId).previousTrackingId;
     }
