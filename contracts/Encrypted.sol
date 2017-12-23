@@ -19,7 +19,7 @@ contract encrypt is Basic {
         register[owner] = registerEntry(owner , privateKey);
     }
 
-    function fetchOwnerHash(string password) public pure returns (bytes32, bytes32){
+    function fetchOwnerHash(string password) public pure returns (bytes32){
         bytes32 owner = keccak256(bytes32ToString(keccak256(password)));
         return owner;
     }
