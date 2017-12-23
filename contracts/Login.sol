@@ -4,8 +4,10 @@ import "./Basic.sol";
 
 contract Login is Basic{
 
+  bytes32 trackingId;
+
   function verify(string info,string productId) returns (bool){
-    bytes32 trackingId = items[productId];
+    trackingId = items[productId];
     ProofEntry acOwner = proofs[trackingId];
     bytes32 newKey = keccak256(info);
     if(newKey == acOwner.privateKey)
@@ -15,6 +17,10 @@ contract Login is Basic{
     else {
       return false;
     }
+  }
+
+  function getTrackingId() constant returns (bytes32){
+  return trackingId;
   }
 
 }
