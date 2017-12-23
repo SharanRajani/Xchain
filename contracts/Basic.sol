@@ -80,6 +80,13 @@ contract Basic is Mortal {
     }
   }
 
+  function getRecord(string productId) constant returns(ProofEntry) {
+    bytes32 trackingId = items[productId];
+    ProofEntry record = getProofInternal(trackingId);
+    return record;
+  }
+
+
   // returns the encrypted part of the proof
   function getprivateKey(bytes32 trackingId) constant returns(bytes32 privateKey) {
     if (hasProof(trackingId)) {
