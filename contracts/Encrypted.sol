@@ -28,7 +28,7 @@ contract encrypt is Basic {
 
 
 
-    function bytes32ToString(bytes32 x) public pure internal returns (string) {
+    function bytes32ToString(bytes32 x) pure internal returns (string) {
     bytes memory bytesString = new bytes(32);
     uint charCount = 0;
     for (uint j = 0; j < 32; j++) {
