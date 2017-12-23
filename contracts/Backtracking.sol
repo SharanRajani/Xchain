@@ -5,8 +5,7 @@ import "./Basic.sol";
 contract Backtracking is Basic {
 
   function track(string itemId) returns (bytes32[128] ownerAddresses,uint count) {
-    uint count=0;
-    bytes32[128] ownerAddresses;
+    count=0;
     bytes32 trackingId = items[itemId];
     bytes32 root = getRoot();
     while( trackingId != root )
