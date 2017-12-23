@@ -6,21 +6,21 @@ import "./Encrypted.sol";
 
 contract TransferOwnership is Basic, encrypted{
 
-  function transferProof(bytes32 owner, bytes32 previousTrackingId, bytes32 newOwner)public returns(bool success) {
+  function transferProof(bytes32 owner, bytes32 previousTrackingId, bytes32 newOwner, string productId)public returns(bool success) {
 
-    bytes32 trackingId=keccak256(bytes32toString(previousTrackingId));
-    bytes32 newTrackingId=keccak256(bytes32toString(trackingId));
+    if (previousTrackingId != keccak256("root")) {
+      bytes32 trackingId=keccak256(bytes32toString(previousTrackingId));
+    }
+    else
+    {
+      bytes32 trackingId=keccak256(productId);
+    }
+    bytes32 newTrackingId=keccak256(bytes32toString(trackingId));  
 
-    if (keccak256(trackingId) != keccak256("root")) {
-      if (hasProof(trackingId)) {
-        ProofEntry memory pe = getProofInternal(trackingId);
-
-      }
-
-      if (hasProof(newTrackingId)) {
-        // already exists- return
-        return false;
-      }
+   if (hasProof(newTrackingId)) {
+    // already exists- return
+     return false;
+   }
 
     proofs[newTrackingId].owner = newOwner;
     proofs[newTrackingId].privateKey=register[newOwner].privateKey;
@@ -28,6 +28,6 @@ contract TransferOwnership is Basic, encrypted{
     transferCompleted(owner, newOwner, newTrackingId, proofs[newTrackingId].previousTrackingId);
     return true;
 
-   }
+
   }
  }
