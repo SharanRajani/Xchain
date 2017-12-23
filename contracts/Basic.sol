@@ -82,7 +82,7 @@ contract Basic is Mortal {
 
   function getRecord(string productId) constant returns(ProofEntry) {
     bytes32 trackingId = items[productId];
-    ProofEntry record = getProofInternal(trackingId);
+    ProofEntry memory record = getProofInternal(trackingId);
     return record;
   }
 
