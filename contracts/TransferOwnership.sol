@@ -4,21 +4,21 @@ import "./Basic.sol";
 import "./Encrypted.sol";
 
 
-contract TransferOwnership is Basic, encrypted{
+contract TransferOwnership is Basic, encrypt{
 
   function transferProof(bytes32 owner, bytes32 previousTrackingId, bytes32 newOwner, string productId)public returns(bool success) {
 
     bytes32 trackingId;
 
     if (previousTrackingId != keccak256("root")) {
-    trackingId=keccak256(bytes32toString(previousTrackingId));
+    trackingId=keccak256(bytes32ToString(previousTrackingId));
     }
     else
     {
     trackingId=keccak256(productId);
     }
 
-    bytes32 newTrackingId=keccak256(bytes32toString(trackingId));
+    bytes32 newTrackingId=keccak256(bytes32ToString(trackingId));
 
     if (hasProof(newTrackingId)) {
     // already exists- return
