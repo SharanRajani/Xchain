@@ -4,7 +4,7 @@ import "./Basic.sol";
 import "./Encrypted.sol";
 
 
-contract TransferOwnership is Basic, encrypt{
+contract TransferOwnership is Basic, Encrypted{
 
   function transferProof(bytes32 owner, bytes32 previousTrackingId, bytes32 newOwner, string productId)public returns(bool success) {
 

@@ -2,7 +2,7 @@ pragma solidity ^0.4.4;
 
 import "./Basic.sol";
 
-contract encrypt is Basic {
+contract Encrypted is Basic {
 
     function addProduct(string password, string productId) public{
 
@@ -12,8 +12,7 @@ contract encrypt is Basic {
         bytes32 trackingId = keccak256(productId);
         proofs[trackingId] = ProofEntry(ownerHash, privateKeyHash, previousTrackingId);
         items[productId] = trackingId;
-
-        // return (ownerHash, proofs[trackingId].owner); 
+        productAdded(password,ownerHash,productId);
     }
     function registerUser(string password) public {
         bytes32 owner = keccak256(bytes32ToString(keccak256(password)));

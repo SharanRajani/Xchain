@@ -29,6 +29,12 @@ contract Basic is Mortal {
     bytes32 previousTrackingId
   );
 
+  event productAdded(
+    string info,
+    bytes32 ownerHash,
+    string productId
+  );
+
 
   function Basic() {
 

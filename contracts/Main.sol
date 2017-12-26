@@ -8,6 +8,6 @@ import "./Transfer.sol";
 import "./TransferOwnership.sol";
 
 
-contract Main is Backtracking,encrypt,Transfer {
+contract Main is Backtracking,Encrypted,Transfer {
 
 }
