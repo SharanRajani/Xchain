@@ -74,20 +74,42 @@
       ],
       "name": "transferCompleted",
       "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "info",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "name": "ownerHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "productId",
+          "type": "string"
+        }
+      ],
+      "name": "productAdded",
+      "type": "event"
     }
   ],
-  "bytecode": "0x606060405260405180807f726f6f740000000000000000000000000000000000000000000000000000000081525060040190506040518091039020600190600019169055341561004e57600080fd5b6103278061005d6000396000f300606060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806311dd88451461005c57806341c0e1b5146100e4578063f1eae25c146100f9575b600080fd5b341561006757600080fd5b6100b7600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190505061010e565b60405180836000191660001916815260200182600019166000191681526020019250505060405180910390f35b34156100ef57600080fd5b6100f76101fd565b005b341561010457600080fd5b61010c61028e565b005b600080600061011b6102d0565b6003856040518082805190602001908083835b602083101515610153578051825260208201915060208101905060208303925061012e565b6001836020036101000a0380198251168184511680821785525050505050509050019150509081526020016040518091039020549150600260008360001916600019168152602001908152602001600020606060405190810160405290816000820154600019166000191681526020016001820154600019166000191681526020016002820154600019166000191681525050905080600001518160400151935093505050915091565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141561028c576000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b565b336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b60606040519081016040528060008019168152602001600080191681526020016000801916815250905600a165627a7a72305820b1a0936644ca66c48d459ef3382e87ea1b7ccfed1fbea633d2c5301d0f6e578d0029",
-  "deployedBytecode": "0x606060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806311dd88451461005c57806341c0e1b5146100e4578063f1eae25c146100f9575b600080fd5b341561006757600080fd5b6100b7600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190505061010e565b60405180836000191660001916815260200182600019166000191681526020019250505060405180910390f35b34156100ef57600080fd5b6100f76101fd565b005b341561010457600080fd5b61010c61028e565b005b600080600061011b6102d0565b6003856040518082805190602001908083835b602083101515610153578051825260208201915060208101905060208303925061012e565b6001836020036101000a0380198251168184511680821785525050505050509050019150509081526020016040518091039020549150600260008360001916600019168152602001908152602001600020606060405190810160405290816000820154600019166000191681526020016001820154600019166000191681526020016002820154600019166000191681525050905080600001518160400151935093505050915091565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141561028c576000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b565b336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b60606040519081016040528060008019168152602001600080191681526020016000801916815250905600a165627a7a72305820b1a0936644ca66c48d459ef3382e87ea1b7ccfed1fbea633d2c5301d0f6e578d0029",
-  "sourceMap": "49:2712:0:-;;;266:17;;;;;;;;;;;;;;;;;;;251:32;;;;;;;737:23;;;;;;;;49:2712;;;;;;",
-  "deployedSourceMap": "49:2712:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1910:223;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;220:62:2;;;;;;;;;;;;;;66:50;;;;;;;;;;;;;;1910:223:0;1964:7;1972;1987:18;2030:24;;:::i;:::-;2008:5;2014:9;2008:16;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:2;51:6;36:153;;;182:3;176:5;171:3;164:6;98:2;93:3;89;82:19;;123:2;118:3;114;107:19;;148:2;143:3;139;132:19;;36:153;;;274:1;267:3;263:2;259:3;254;250;246;315:4;311:3;305;299:5;295:3;356:4;350:3;344:5;340:3;389:7;380;377:2;372:3;365:6;3:399;;;;;;;;;;;;;;;;;;;;;;;;;1987:37:0;;2057:6;:18;2064:10;2057:18;;;;;;;;;;;;;;;;;2030:45;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2089:6;:12;;;2102:6;:25;;;2081:47;;;;1910:223;;;;;:::o;220:62:2:-;167:5;;;;;;;;;;;155:17;;:10;:17;;;152:56;;;269:5;;;;;;;;;;;256:19;;;152:56;220:62::o;66:50::-;99:10;93:5;;:16;;;;;;;;;;;;;;;;;;66:50::o;49:2712:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
-  "source": "pragma solidity ^0.4.4;\n\nimport \"./Mortal.sol\";\n\ncontract Basic is Mortal {\n  struct ProofEntry {\n    bytes32 owner;\n    bytes32 privateKey;\n    bytes32 previousTrackingId;\n  }\n  struct registerEntry{\n    bytes32 owner;\n    bytes32 privateKey;\n  }\n\n  bytes32 root = keccak256(\"root\");\n  //'root', variable of the type bytes32 stores\n  //hash of the word \"root\"\n\n  // map of trackingId to proofEntry\n  mapping (bytes32 => ProofEntry) proofs; // trackingId to ownerBlock\n  mapping (string => bytes32) items;  // productId to trackingId\n  mapping (bytes32 => registerEntry) register; // ownerHash to registerEntry\n\n  event transferCompleted(\n    bytes32 from,\n    bytes32 to,\n    bytes32 trackingId,\n    bytes32 previousTrackingId\n  );\n\n\n  function Basic() {\n\n  }\n\n  // returns true if proof is stored\n  function hasProof(bytes32 trackingId) constant internal returns(bool) {\n    if(proofs[trackingId].owner != \"\")\n    {\n      return true;\n    }\n    else {\n      return false;\n    }\n  }\n\n  function getRoot() constant internal returns (bytes32) {\n    return root;\n  }\n\n  // returns true if entry exist\n  function hasEntry(string productId) constant internal returns(bool) {\n    bytes32 check = items[productId];\n    if(check == \"\")\n    {\n      return false;\n    }\n    else {\n      return true;\n    }\n  }\n\n  // returns the proof\n  function getProofInternal(bytes32 trackingId) constant internal returns(ProofEntry proof) {\n    if (hasProof(trackingId)) {\n      return proofs[trackingId];\n    }\n\n    // proof doesn't exist, throw and terminate transaction\n    throw;\n  }\n\n  function getProof(bytes32 trackingId) constant internal returns(bytes32 owner, bytes32 privateKey, bytes32 previousTrackingId) {\n    if (hasProof(trackingId)) {\n      ProofEntry memory pe = getProofInternal(trackingId);\n      owner = pe.owner;\n      privateKey = pe.privateKey;\n      previousTrackingId = pe.previousTrackingId;\n    }\n  }\n\n  function getRecord(string productId) constant returns(bytes32,bytes32) {\n    bytes32 trackingId = items[productId];\n    ProofEntry memory record = proofs[trackingId];\n    return (record.owner,record.previousTrackingId);\n  }\n\n\n  // returns the encrypted part of the proof\n  function getprivateKey(bytes32 trackingId) constant internal returns(bytes32 privateKey) {\n    if (hasProof(trackingId)) {\n      return getProofInternal(trackingId).privateKey;\n    }\n  }\n\n  function getOwner(bytes32 trackingId) constant internal returns(bytes32 owner) {\n    if (hasProof(trackingId)) {\n      return getProofInternal(trackingId).owner;\n    }\n  }\n\n  function getPreviousTrackingId(bytes32 trackingId) constant internal returns(bytes32 previousTrackingId) {\n    if (hasProof(trackingId)) {\n      return getProofInternal(trackingId).previousTrackingId;\n    }\n  }\n\n}\n",
+  "bytecode": "0x606060405260405180807f726f6f740000000000000000000000000000000000000000000000000000000081525060040190506040518091039020600190600019169055341561004e57600080fd5b6103278061005d6000396000f300606060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806311dd88451461005c57806341c0e1b5146100e4578063f1eae25c146100f9575b600080fd5b341561006757600080fd5b6100b7600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190505061010e565b60405180836000191660001916815260200182600019166000191681526020019250505060405180910390f35b34156100ef57600080fd5b6100f76101fd565b005b341561010457600080fd5b61010c61028e565b005b600080600061011b6102d0565b6003856040518082805190602001908083835b602083101515610153578051825260208201915060208101905060208303925061012e565b6001836020036101000a0380198251168184511680821785525050505050509050019150509081526020016040518091039020549150600260008360001916600019168152602001908152602001600020606060405190810160405290816000820154600019166000191681526020016001820154600019166000191681526020016002820154600019166000191681525050905080600001518160400151935093505050915091565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141561028c576000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b565b336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b60606040519081016040528060008019168152602001600080191681526020016000801916815250905600a165627a7a72305820eae7654835d16e78d7cea52cd5fa5c31984b541cd204bd9438b4b7fbba6a8d500029",
+  "deployedBytecode": "0x606060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806311dd88451461005c57806341c0e1b5146100e4578063f1eae25c146100f9575b600080fd5b341561006757600080fd5b6100b7600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190505061010e565b60405180836000191660001916815260200182600019166000191681526020019250505060405180910390f35b34156100ef57600080fd5b6100f76101fd565b005b341561010457600080fd5b61010c61028e565b005b600080600061011b6102d0565b6003856040518082805190602001908083835b602083101515610153578051825260208201915060208101905060208303925061012e565b6001836020036101000a0380198251168184511680821785525050505050509050019150509081526020016040518091039020549150600260008360001916600019168152602001908152602001600020606060405190810160405290816000820154600019166000191681526020016001820154600019166000191681526020016002820154600019166000191681525050905080600001518160400151935093505050915091565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141561028c576000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b565b336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b60606040519081016040528060008019168152602001600080191681526020016000801916815250905600a165627a7a72305820eae7654835d16e78d7cea52cd5fa5c31984b541cd204bd9438b4b7fbba6a8d500029",
+  "sourceMap": "49:2801:0:-;;;266:17;;;;;;;;;;;;;;;;;;;251:32;;;;;;;826:23;;;;;;;;49:2801;;;;;;",
+  "deployedSourceMap": "49:2801:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1999:223;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;220:62:2;;;;;;;;;;;;;;66:50;;;;;;;;;;;;;;1999:223:0;2053:7;2061;2076:18;2119:24;;:::i;:::-;2097:5;2103:9;2097:16;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:2;51:6;36:153;;;182:3;176:5;171:3;164:6;98:2;93:3;89;82:19;;123:2;118:3;114;107:19;;148:2;143:3;139;132:19;;36:153;;;274:1;267:3;263:2;259:3;254;250;246;315:4;311:3;305;299:5;295:3;356:4;350:3;344:5;340:3;389:7;380;377:2;372:3;365:6;3:399;;;;;;;;;;;;;;;;;;;;;;;;;2076:37:0;;2146:6;:18;2153:10;2146:18;;;;;;;;;;;;;;;;;2119:45;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2178:6;:12;;;2191:6;:25;;;2170:47;;;;1999:223;;;;;:::o;220:62:2:-;167:5;;;;;;;;;;;155:17;;:10;:17;;;152:56;;;269:5;;;;;;;;;;;256:19;;;152:56;220:62::o;66:50::-;99:10;93:5;;:16;;;;;;;;;;;;;;;;;;66:50::o;49:2801:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.4.4;\n\nimport \"./Mortal.sol\";\n\ncontract Basic is Mortal {\n  struct ProofEntry {\n    bytes32 owner;\n    bytes32 privateKey;\n    bytes32 previousTrackingId;\n  }\n  struct registerEntry{\n    bytes32 owner;\n    bytes32 privateKey;\n  }\n\n  bytes32 root = keccak256(\"root\");\n  //'root', variable of the type bytes32 stores\n  //hash of the word \"root\"\n\n  // map of trackingId to proofEntry\n  mapping (bytes32 => ProofEntry) proofs; // trackingId to ownerBlock\n  mapping (string => bytes32) items;  // productId to trackingId\n  mapping (bytes32 => registerEntry) register; // ownerHash to registerEntry\n\n  event transferCompleted(\n    bytes32 from,\n    bytes32 to,\n    bytes32 trackingId,\n    bytes32 previousTrackingId\n  );\n\n  event productAdded(\n    string info,\n    bytes32 ownerHash,\n    string productId\n  );\n\n\n  function Basic() {\n\n  }\n\n  // returns true if proof is stored\n  function hasProof(bytes32 trackingId) constant internal returns(bool) {\n    if(proofs[trackingId].owner != \"\")\n    {\n      return true;\n    }\n    else {\n      return false;\n    }\n  }\n\n  function getRoot() constant internal returns (bytes32) {\n    return root;\n  }\n\n  // returns true if entry exist\n  function hasEntry(string productId) constant internal returns(bool) {\n    bytes32 check = items[productId];\n    if(check == \"\")\n    {\n      return false;\n    }\n    else {\n      return true;\n    }\n  }\n\n  // returns the proof\n  function getProofInternal(bytes32 trackingId) constant internal returns(ProofEntry proof) {\n    if (hasProof(trackingId)) {\n      return proofs[trackingId];\n    }\n\n    // proof doesn't exist, throw and terminate transaction\n    throw;\n  }\n\n  function getProof(bytes32 trackingId) constant internal returns(bytes32 owner, bytes32 privateKey, bytes32 previousTrackingId) {\n    if (hasProof(trackingId)) {\n      ProofEntry memory pe = getProofInternal(trackingId);\n      owner = pe.owner;\n      privateKey = pe.privateKey;\n      previousTrackingId = pe.previousTrackingId;\n    }\n  }\n\n  function getRecord(string productId) constant returns(bytes32,bytes32) {\n    bytes32 trackingId = items[productId];\n    ProofEntry memory record = proofs[trackingId];\n    return (record.owner,record.previousTrackingId);\n  }\n\n\n  // returns the encrypted part of the proof\n  function getprivateKey(bytes32 trackingId) constant internal returns(bytes32 privateKey) {\n    if (hasProof(trackingId)) {\n      return getProofInternal(trackingId).privateKey;\n    }\n  }\n\n  function getOwner(bytes32 trackingId) constant internal returns(bytes32 owner) {\n    if (hasProof(trackingId)) {\n      return getProofInternal(trackingId).owner;\n    }\n  }\n\n  function getPreviousTrackingId(bytes32 trackingId) constant internal returns(bytes32 previousTrackingId) {\n    if (hasProof(trackingId)) {\n      return getProofInternal(trackingId).previousTrackingId;\n    }\n  }\n\n}\n",
   "sourcePath": "/home/thegodfather/XChain/Xchain/contracts/Basic.sol",
   "ast": {
     "attributes": {
       "absolutePath": "/home/thegodfather/XChain/Xchain/contracts/Basic.sol",
       "exportedSymbols": {
         "Basic": [
-          239
+          247
         ]
       }
     },
@@ -107,10 +129,10 @@
       },
       {
         "attributes": {
-          "SourceUnit": 476,
+          "SourceUnit": 528,
           "absolutePath": "/home/thegodfather/XChain/Xchain/contracts/Mortal.sol",
           "file": "./Mortal.sol",
-          "scope": 240,
+          "scope": 248,
           "symbolAliases": [
             null
           ],
@@ -123,17 +145,17 @@
       {
         "attributes": {
           "contractDependencies": [
-            475
+            527
           ],
           "contractKind": "contract",
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            239,
-            475
+            247,
+            527
           ],
           "name": "Basic",
-          "scope": 240
+          "scope": 248
         },
         "children": [
           {
@@ -147,7 +169,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "Mortal",
-                  "referencedDeclaration": 475,
+                  "referencedDeclaration": 527,
                   "type": "contract Mortal"
                 },
                 "id": 3,
@@ -163,7 +185,7 @@
             "attributes": {
               "canonicalName": "Basic.ProofEntry",
               "name": "ProofEntry",
-              "scope": 239,
+              "scope": 247,
               "visibility": "public"
             },
             "children": [
@@ -254,7 +276,7 @@
             "attributes": {
               "canonicalName": "Basic.registerEntry",
               "name": "registerEntry",
-              "scope": 239,
+              "scope": 247,
               "visibility": "public"
             },
             "children": [
@@ -319,7 +341,7 @@
             "attributes": {
               "constant": false,
               "name": "root",
-              "scope": 239,
+              "scope": 247,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "bytes32",
@@ -361,7 +383,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 481,
+                      "referencedDeclaration": 533,
                       "type": "function () pure returns (bytes32)",
                       "value": "keccak256"
                     },
@@ -400,7 +422,7 @@
             "attributes": {
               "constant": false,
               "name": "proofs",
-              "scope": 239,
+              "scope": 247,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "mapping(bytes32 => struct Basic.ProofEntry storage ref)",
@@ -447,7 +469,7 @@
             "attributes": {
               "constant": false,
               "name": "items",
-              "scope": 239,
+              "scope": 247,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "mapping(string memory => bytes32)",
@@ -492,7 +514,7 @@
             "attributes": {
               "constant": false,
               "name": "register",
-              "scope": 239,
+              "scope": 247,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "mapping(bytes32 => struct Basic.registerEntry storage ref)",
@@ -669,12 +691,13 @@
               "modifiers": [
                 null
               ],
-              "name": "Basic",
+              "name": "productAdded",
               "payable": false,
               "scope": 239,
               "stateMutability": "nonpayable",
               "superFunction": null,
-              "visibility": "public"
+              "visibility": "public",
+              "anonymous": false
             },
             "children": [
               {
@@ -683,10 +706,92 @@
                     null
                   ]
                 },
-                "children": [],
-                "id": 44,
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "info",
+                      "scope": 51,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string memory",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string storage pointer"
+                        },
+                        "id": 44,
+                        "name": "ElementaryTypeName",
+                        "src": "760:6:0"
+                      }
+                    ],
+                    "id": 45,
+                    "name": "VariableDeclaration",
+                    "src": "760:11:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "ownerHash",
+                      "scope": 51,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 46,
+                        "name": "ElementaryTypeName",
+                        "src": "777:7:0"
+                      }
+                    ],
+                    "id": 47,
+                    "name": "VariableDeclaration",
+                    "src": "777:17:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "productId",
+                      "scope": 51,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string memory",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string storage pointer"
+                        },
+                        "id": 48,
+                        "name": "ElementaryTypeName",
+                        "src": "800:6:0"
+                      }
+                    ],
+                    "id": 49,
+                    "name": "VariableDeclaration",
+                    "src": "800:16:0"
+                  }
+                ],
+                "id": 50,
                 "name": "ParameterList",
-                "src": "751:2:0"
+                "src": "754:66:0"
               },
               {
                 "attributes": {
@@ -711,24 +816,24 @@
                 "src": "754:6:0"
               }
             ],
-            "id": 47,
-            "name": "FunctionDefinition",
-            "src": "737:23:0"
+            "id": 51,
+            "name": "EventDefinition",
+            "src": "736:85:0"
           },
           {
             "attributes": {
-              "constant": true,
+              "constant": false,
               "implemented": true,
-              "isConstructor": false,
+              "isConstructor": true,
               "modifiers": [
                 null
               ],
-              "name": "hasProof",
+              "name": "Basic",
               "payable": false,
-              "scope": 239,
-              "stateMutability": "view",
+              "scope": 247,
+              "stateMutability": "nonpayable",
               "superFunction": null,
-              "visibility": "internal"
+              "visibility": "public"
             },
             "children": [
               {
@@ -760,9 +865,14 @@
                     "src": "819:18:0"
                   }
                 ],
-                "id": 50,
+                "id": 52,
                 "name": "ParameterList",
-                "src": "818:20:0"
+                "src": "840:2:0",
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                }
               },
               {
                 "children": [
@@ -795,7 +905,12 @@
                 ],
                 "id": 53,
                 "name": "ParameterList",
-                "src": "864:6:0"
+                "src": "843:0:0",
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                }
               },
               {
                 "children": [
@@ -972,14 +1087,19 @@
                     "src": "877:102:0"
                   }
                 ],
-                "id": 67,
+                "id": 54,
                 "name": "Block",
-                "src": "871:112:0"
+                "src": "843:6:0",
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                }
               }
             ],
-            "id": 68,
+            "id": 55,
             "name": "FunctionDefinition",
-            "src": "801:182:0"
+            "src": "826:23:0"
           },
           {
             "attributes": {
@@ -989,9 +1109,9 @@
               "modifiers": [
                 null
               ],
-              "name": "getRoot",
+              "name": "hasProof",
               "payable": false,
-              "scope": 239,
+              "scope": 247,
               "stateMutability": "view",
               "superFunction": null,
               "visibility": "internal"
@@ -1003,17 +1123,11 @@
                     null
                   ]
                 },
-                "children": [],
-                "id": 69,
-                "name": "ParameterList",
-                "src": "1003:2:0"
-              },
-              {
                 "children": [
                   {
                     "attributes": {
                       "constant": false,
-                      "name": "",
+                      "name": "trackingId",
                       "scope": 76,
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -1027,19 +1141,52 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 70,
+                        "id": 56,
                         "name": "ElementaryTypeName",
-                        "src": "1033:7:0"
+                        "src": "908:7:0"
                       }
                     ],
-                    "id": 71,
+                    "id": 57,
                     "name": "VariableDeclaration",
-                    "src": "1033:7:0"
+                    "src": "908:18:0"
                   }
                 ],
-                "id": 72,
+                "id": 58,
                 "name": "ParameterList",
-                "src": "1032:9:0"
+                "src": "907:20:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 76,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 59,
+                        "name": "ElementaryTypeName",
+                        "src": "954:4:0"
+                      }
+                    ],
+                    "id": 60,
+                    "name": "VariableDeclaration",
+                    "src": "954:4:0"
+                  }
+                ],
+                "id": 61,
+                "name": "ParameterList",
+                "src": "953:6:0"
               },
               {
                 "children": [
@@ -1055,27 +1202,183 @@
                             null
                           ],
                           "referencedDeclaration": 21,
-                          "type": "bytes32",
-                          "value": "root"
+                          "type": "bool",
+                          "value": "root",
+                          "commonType": {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "!="
                         },
+                        "id": 67,
+                        "name": "BinaryOperation",
+                        "src": "969:30:0",
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "owner",
+                              "referencedDeclaration": 6,
+                              "type": "bytes32"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "struct Basic.ProofEntry storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 25,
+                                      "type": "mapping(bytes32 => struct Basic.ProofEntry storage ref)",
+                                      "value": "proofs"
+                                    },
+                                    "id": 62,
+                                    "name": "Identifier",
+                                    "src": "969:6:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 57,
+                                      "type": "bytes32",
+                                      "value": "trackingId"
+                                    },
+                                    "id": 63,
+                                    "name": "Identifier",
+                                    "src": "976:10:0"
+                                  }
+                                ],
+                                "id": 64,
+                                "name": "IndexAccess",
+                                "src": "969:18:0"
+                              }
+                            ],
+                            "id": 65,
+                            "name": "MemberAccess",
+                            "src": "969:24:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"\"",
+                              "value": ""
+                            },
+                            "id": 66,
+                            "name": "Literal",
+                            "src": "997:2:0"
+                          }
+                        ]
+                      },
+                      {
+                        "children": [
+                          {
+                            "attributes": {
+                              "functionReturnParameters": 61
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "74727565",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "bool",
+                                  "type": "bool",
+                                  "value": "true"
+                                },
+                                "id": 68,
+                                "name": "Literal",
+                                "src": "1020:4:0"
+                              }
+                            ],
+                            "id": 69,
+                            "name": "Return",
+                            "src": "1013:11:0"
+                          }
+                        ],
+                        "id": 70,
+                        "name": "Block",
+                        "src": "1005:26:0"
+                      },
+                      {
+                        "children": [
+                          {
+                            "attributes": {
+                              "functionReturnParameters": 61
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "66616c7365",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "bool",
+                                  "type": "bool",
+                                  "value": "false"
+                                },
+                                "id": 71,
+                                "name": "Literal",
+                                "src": "1056:5:0"
+                              }
+                            ],
+                            "id": 72,
+                            "name": "Return",
+                            "src": "1049:12:0"
+                          }
+                        ],
                         "id": 73,
-                        "name": "Identifier",
-                        "src": "1055:4:0"
+                        "name": "Block",
+                        "src": "1041:27:0"
                       }
                     ],
                     "id": 74,
-                    "name": "Return",
-                    "src": "1048:11:0"
+                    "name": "IfStatement",
+                    "src": "966:102:0"
                   }
                 ],
                 "id": 75,
                 "name": "Block",
-                "src": "1042:22:0"
+                "src": "960:112:0"
               }
             ],
             "id": 76,
             "name": "FunctionDefinition",
-            "src": "987:77:0"
+            "src": "890:182:0"
           },
           {
             "attributes": {
@@ -1085,9 +1388,9 @@
               "modifiers": [
                 null
               ],
-              "name": "hasEntry",
+              "name": "getRoot",
               "payable": false,
-              "scope": 239,
+              "scope": 247,
               "stateMutability": "view",
               "superFunction": null,
               "visibility": "internal"
@@ -1122,9 +1425,14 @@
                     "src": "1119:16:0"
                   }
                 ],
-                "id": 79,
+                "id": 77,
                 "name": "ParameterList",
-                "src": "1118:18:0"
+                "src": "1092:2:0",
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                }
               },
               {
                 "children": [
@@ -1132,32 +1440,32 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 100,
+                      "scope": 84,
                       "stateVariable": false,
                       "storageLocation": "default",
-                      "type": "bool",
+                      "type": "bytes32",
                       "value": null,
                       "visibility": "internal"
                     },
                     "children": [
                       {
                         "attributes": {
-                          "name": "bool",
-                          "type": "bool"
+                          "name": "bytes32",
+                          "type": "bytes32"
                         },
-                        "id": 80,
+                        "id": 78,
                         "name": "ElementaryTypeName",
-                        "src": "1163:4:0"
+                        "src": "1122:7:0"
                       }
                     ],
-                    "id": 81,
+                    "id": 79,
                     "name": "VariableDeclaration",
-                    "src": "1163:4:0"
+                    "src": "1122:7:0"
                   }
                 ],
-                "id": 82,
+                "id": 80,
                 "name": "ParameterList",
-                "src": "1162:6:0"
+                "src": "1121:9:0"
               },
               {
                 "children": [
@@ -1165,7 +1473,8 @@
                     "attributes": {
                       "assignments": [
                         84
-                      ]
+                      ],
+                      "functionReturnParameters": 80
                     },
                     "children": [
                       {
@@ -1176,8 +1485,13 @@
                           "stateVariable": false,
                           "storageLocation": "default",
                           "type": "bytes32",
-                          "value": null,
-                          "visibility": "internal"
+                          "value": "root",
+                          "visibility": "internal",
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 21
                         },
                         "children": [
                           {
@@ -1190,9 +1504,9 @@
                             "src": "1175:7:0"
                           }
                         ],
-                        "id": 84,
-                        "name": "VariableDeclaration",
-                        "src": "1175:13:0"
+                        "id": 81,
+                        "name": "Identifier",
+                        "src": "1144:4:0"
                       },
                       {
                         "attributes": {
@@ -1238,9 +1552,9 @@
                         "src": "1191:16:0"
                       }
                     ],
-                    "id": 88,
-                    "name": "VariableDeclarationStatement",
-                    "src": "1175:32:0"
+                    "id": 82,
+                    "name": "Return",
+                    "src": "1137:11:0"
                   },
                   {
                     "children": [
@@ -1369,14 +1683,14 @@
                     "src": "1213:83:0"
                   }
                 ],
-                "id": 99,
+                "id": 83,
                 "name": "Block",
-                "src": "1169:131:0"
+                "src": "1131:22:0"
               }
             ],
-            "id": 100,
+            "id": 84,
             "name": "FunctionDefinition",
-            "src": "1101:199:0"
+            "src": "1076:77:0"
           },
           {
             "attributes": {
@@ -1386,9 +1700,9 @@
               "modifiers": [
                 null
               ],
-              "name": "getProofInternal",
+              "name": "hasEntry",
               "payable": false,
-              "scope": 239,
+              "scope": 247,
               "stateMutability": "view",
               "superFunction": null,
               "visibility": "internal"
@@ -1399,44 +1713,44 @@
                   {
                     "attributes": {
                       "constant": false,
-                      "name": "trackingId",
-                      "scope": 118,
+                      "name": "productId",
+                      "scope": 108,
                       "stateVariable": false,
                       "storageLocation": "default",
-                      "type": "bytes32",
+                      "type": "string memory",
                       "value": null,
                       "visibility": "internal"
                     },
                     "children": [
                       {
                         "attributes": {
-                          "name": "bytes32",
-                          "type": "bytes32"
+                          "name": "string",
+                          "type": "string storage pointer"
                         },
-                        "id": 101,
+                        "id": 85,
                         "name": "ElementaryTypeName",
-                        "src": "1353:7:0"
+                        "src": "1208:6:0"
                       }
                     ],
-                    "id": 102,
+                    "id": 86,
                     "name": "VariableDeclaration",
-                    "src": "1353:18:0"
+                    "src": "1208:16:0"
                   }
                 ],
-                "id": 103,
+                "id": 87,
                 "name": "ParameterList",
-                "src": "1352:20:0"
+                "src": "1207:18:0"
               },
               {
                 "children": [
                   {
                     "attributes": {
                       "constant": false,
-                      "name": "proof",
-                      "scope": 118,
+                      "name": "",
+                      "scope": 108,
                       "stateVariable": false,
                       "storageLocation": "default",
-                      "type": "struct Basic.ProofEntry memory",
+                      "type": "bool",
                       "value": null,
                       "visibility": "internal"
                     },
@@ -1444,29 +1758,32 @@
                       {
                         "attributes": {
                           "contractScope": null,
-                          "name": "ProofEntry",
+                          "name": "bool",
                           "referencedDeclaration": 11,
-                          "type": "struct Basic.ProofEntry storage pointer"
+                          "type": "bool"
                         },
-                        "id": 104,
-                        "name": "UserDefinedTypeName",
-                        "src": "1399:10:0"
+                        "id": 88,
+                        "name": "ElementaryTypeName",
+                        "src": "1252:4:0"
                       }
                     ],
-                    "id": 105,
+                    "id": 89,
                     "name": "VariableDeclaration",
-                    "src": "1399:16:0"
+                    "src": "1252:4:0"
                   }
                 ],
-                "id": 106,
+                "id": 90,
                 "name": "ParameterList",
-                "src": "1398:18:0"
+                "src": "1251:6:0"
               },
               {
                 "children": [
                   {
                     "attributes": {
-                      "falseBody": null
+                      "falseBody": null,
+                      "assignments": [
+                        92
+                      ]
                     },
                     "children": [
                       {
@@ -1480,8 +1797,15 @@
                           "names": [
                             null
                           ],
-                          "type": "bool",
-                          "type_conversion": false
+                          "type": "bytes32",
+                          "type_conversion": false,
+                          "constant": false,
+                          "name": "check",
+                          "scope": 108,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "value": null,
+                          "visibility": "internal"
                         },
                         "children": [
                           {
@@ -1496,12 +1820,13 @@
                                 null
                               ],
                               "referencedDeclaration": 68,
-                              "type": "function (bytes32) view returns (bool)",
-                              "value": "hasProof"
+                              "type": "bytes32",
+                              "value": "hasProof",
+                              "name": "bytes32"
                             },
-                            "id": 107,
-                            "name": "Identifier",
-                            "src": "1427:8:0"
+                            "id": 91,
+                            "name": "ElementaryTypeName",
+                            "src": "1264:7:0"
                           },
                           {
                             "attributes": {
@@ -1518,15 +1843,22 @@
                             "src": "1436:10:0"
                           }
                         ],
-                        "id": 109,
-                        "name": "FunctionCall",
-                        "src": "1427:20:0"
+                        "id": 92,
+                        "name": "VariableDeclaration",
+                        "src": "1264:13:0"
                       },
                       {
                         "children": [
                           {
                             "attributes": {
-                              "functionReturnParameters": 106
+                              "functionReturnParameters": 106,
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 29,
+                              "type": "mapping(string memory => bytes32)",
+                              "value": "items"
                             },
                             "children": [
                               {
@@ -1573,35 +1905,177 @@
                                 "src": "1464:18:0"
                               }
                             ],
-                            "id": 113,
-                            "name": "Return",
-                            "src": "1457:25:0"
+                            "id": 93,
+                            "name": "Identifier",
+                            "src": "1280:5:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 86,
+                              "type": "string memory",
+                              "value": "productId"
+                            },
+                            "id": 94,
+                            "name": "Identifier",
+                            "src": "1286:9:0"
                           }
                         ],
-                        "id": 114,
-                        "name": "Block",
-                        "src": "1449:40:0"
+                        "id": 95,
+                        "name": "IndexAccess",
+                        "src": "1280:16:0",
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "bytes32"
+                        }
                       }
                     ],
-                    "id": 115,
-                    "name": "IfStatement",
-                    "src": "1423:66:0"
+                    "id": 96,
+                    "name": "VariableDeclarationStatement",
+                    "src": "1264:32:0"
                   },
                   {
-                    "children": [],
-                    "id": 116,
-                    "name": "Throw",
-                    "src": "1555:5:0"
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "==",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 92,
+                              "type": "bytes32",
+                              "value": "check"
+                            },
+                            "id": 97,
+                            "name": "Identifier",
+                            "src": "1305:5:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"\"",
+                              "value": ""
+                            },
+                            "id": 98,
+                            "name": "Literal",
+                            "src": "1314:2:0"
+                          }
+                        ],
+                        "id": 99,
+                        "name": "BinaryOperation",
+                        "src": "1305:11:0"
+                      },
+                      {
+                        "children": [
+                          {
+                            "attributes": {
+                              "functionReturnParameters": 90
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "66616c7365",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "bool",
+                                  "type": "bool",
+                                  "value": "false"
+                                },
+                                "id": 100,
+                                "name": "Literal",
+                                "src": "1337:5:0"
+                              }
+                            ],
+                            "id": 101,
+                            "name": "Return",
+                            "src": "1330:12:0"
+                          }
+                        ],
+                        "id": 102,
+                        "name": "Block",
+                        "src": "1322:27:0"
+                      },
+                      {
+                        "children": [
+                          {
+                            "attributes": {
+                              "functionReturnParameters": 90
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "74727565",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "bool",
+                                  "type": "bool",
+                                  "value": "true"
+                                },
+                                "id": 103,
+                                "name": "Literal",
+                                "src": "1374:4:0"
+                              }
+                            ],
+                            "id": 104,
+                            "name": "Return",
+                            "src": "1367:11:0"
+                          }
+                        ],
+                        "id": 105,
+                        "name": "Block",
+                        "src": "1359:26:0"
+                      }
+                    ],
+                    "id": 106,
+                    "name": "IfStatement",
+                    "src": "1302:83:0"
                   }
                 ],
-                "id": 117,
+                "id": 107,
                 "name": "Block",
-                "src": "1417:148:0"
+                "src": "1258:131:0"
               }
             ],
-            "id": 118,
+            "id": 108,
             "name": "FunctionDefinition",
-            "src": "1327:238:0"
+            "src": "1190:199:0"
           },
           {
             "attributes": {
@@ -1611,9 +2085,9 @@
               "modifiers": [
                 null
               ],
-              "name": "getProof",
+              "name": "getProofInternal",
               "payable": false,
-              "scope": 239,
+              "scope": 247,
               "stateMutability": "view",
               "superFunction": null,
               "visibility": "internal"
@@ -1625,7 +2099,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "trackingId",
-                      "scope": 156,
+                      "scope": 126,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -1638,47 +2112,49 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 119,
+                        "id": 109,
                         "name": "ElementaryTypeName",
-                        "src": "1587:7:0"
+                        "src": "1442:7:0"
                       }
                     ],
-                    "id": 120,
+                    "id": 110,
                     "name": "VariableDeclaration",
-                    "src": "1587:18:0"
+                    "src": "1442:18:0"
                   }
                 ],
-                "id": 121,
+                "id": 111,
                 "name": "ParameterList",
-                "src": "1586:20:0"
+                "src": "1441:20:0"
               },
               {
                 "children": [
                   {
                     "attributes": {
                       "constant": false,
-                      "name": "owner",
-                      "scope": 156,
+                      "name": "proof",
+                      "scope": 126,
                       "stateVariable": false,
                       "storageLocation": "default",
-                      "type": "bytes32",
+                      "type": "struct Basic.ProofEntry memory",
                       "value": null,
                       "visibility": "internal"
                     },
                     "children": [
                       {
                         "attributes": {
-                          "name": "bytes32",
-                          "type": "bytes32"
+                          "name": "ProofEntry",
+                          "type": "struct Basic.ProofEntry storage pointer",
+                          "contractScope": null,
+                          "referencedDeclaration": 11
                         },
-                        "id": 122,
-                        "name": "ElementaryTypeName",
-                        "src": "1633:7:0"
+                        "id": 112,
+                        "name": "UserDefinedTypeName",
+                        "src": "1488:10:0"
                       }
                     ],
-                    "id": 123,
+                    "id": 113,
                     "name": "VariableDeclaration",
-                    "src": "1633:13:0"
+                    "src": "1488:16:0"
                   },
                   {
                     "attributes": {
@@ -1733,9 +2209,9 @@
                     "src": "1668:26:0"
                   }
                 ],
-                "id": 128,
+                "id": 114,
                 "name": "ParameterList",
-                "src": "1632:63:0"
+                "src": "1487:18:0"
               },
               {
                 "children": [
@@ -1770,13 +2246,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 68,
+                              "referencedDeclaration": 76,
                               "type": "function (bytes32) view returns (bool)",
                               "value": "hasProof"
                             },
-                            "id": 129,
+                            "id": 115,
                             "name": "Identifier",
-                            "src": "1706:8:0"
+                            "src": "1516:8:0"
                           },
                           {
                             "attributes": {
@@ -1784,18 +2260,18 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 120,
+                              "referencedDeclaration": 110,
                               "type": "bytes32",
                               "value": "trackingId"
                             },
-                            "id": 130,
+                            "id": 116,
                             "name": "Identifier",
-                            "src": "1715:10:0"
+                            "src": "1525:10:0"
                           }
                         ],
-                        "id": 131,
+                        "id": 117,
                         "name": "FunctionCall",
-                        "src": "1706:20:0"
+                        "src": "1516:20:0"
                       },
                       {
                         "children": [
@@ -1803,7 +2279,8 @@
                             "attributes": {
                               "assignments": [
                                 133
-                              ]
+                              ],
+                              "functionReturnParameters": 114
                             },
                             "children": [
                               {
@@ -1813,26 +2290,50 @@
                                   "scope": 156,
                                   "stateVariable": false,
                                   "storageLocation": "memory",
-                                  "type": "struct Basic.ProofEntry memory",
+                                  "type": "struct Basic.ProofEntry storage ref",
                                   "value": null,
-                                  "visibility": "internal"
+                                  "visibility": "internal",
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false
                                 },
                                 "children": [
                                   {
                                     "attributes": {
                                       "contractScope": null,
                                       "name": "ProofEntry",
-                                      "referencedDeclaration": 11,
-                                      "type": "struct Basic.ProofEntry storage pointer"
+                                      "referencedDeclaration": 25,
+                                      "type": "mapping(bytes32 => struct Basic.ProofEntry storage ref)",
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "value": "proofs"
                                     },
-                                    "id": 132,
-                                    "name": "UserDefinedTypeName",
-                                    "src": "1736:10:0"
+                                    "id": 118,
+                                    "name": "Identifier",
+                                    "src": "1553:6:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 110,
+                                      "type": "bytes32",
+                                      "value": "trackingId"
+                                    },
+                                    "id": 119,
+                                    "name": "Identifier",
+                                    "src": "1560:10:0"
                                   }
                                 ],
-                                "id": 133,
-                                "name": "VariableDeclaration",
-                                "src": "1736:20:0"
+                                "id": 120,
+                                "name": "IndexAccess",
+                                "src": "1553:18:0"
                               },
                               {
                                 "attributes": {
@@ -1888,9 +2389,9 @@
                                 "src": "1759:28:0"
                               }
                             ],
-                            "id": 137,
-                            "name": "VariableDeclarationStatement",
-                            "src": "1736:51:0"
+                            "id": 121,
+                            "name": "Return",
+                            "src": "1546:25:0"
                           },
                           {
                             "children": [
@@ -2097,24 +2598,30 @@
                             "src": "1853:42:0"
                           }
                         ],
-                        "id": 153,
+                        "id": 122,
                         "name": "Block",
-                        "src": "1728:174:0"
+                        "src": "1538:40:0"
                       }
                     ],
-                    "id": 154,
+                    "id": 123,
                     "name": "IfStatement",
-                    "src": "1702:200:0"
+                    "src": "1512:66:0"
+                  },
+                  {
+                    "children": [],
+                    "id": 124,
+                    "name": "Throw",
+                    "src": "1644:5:0"
                   }
                 ],
-                "id": 155,
+                "id": 125,
                 "name": "Block",
-                "src": "1696:210:0"
+                "src": "1506:148:0"
               }
             ],
-            "id": 156,
+            "id": 126,
             "name": "FunctionDefinition",
-            "src": "1569:337:0"
+            "src": "1416:238:0"
           },
           {
             "attributes": {
@@ -2124,12 +2631,12 @@
               "modifiers": [
                 null
               ],
-              "name": "getRecord",
+              "name": "getProof",
               "payable": false,
-              "scope": 239,
+              "scope": 247,
               "stateMutability": "view",
               "superFunction": null,
-              "visibility": "public"
+              "visibility": "internal"
             },
             "children": [
               {
@@ -2137,41 +2644,41 @@
                   {
                     "attributes": {
                       "constant": false,
-                      "name": "productId",
-                      "scope": 184,
+                      "name": "trackingId",
+                      "scope": 164,
                       "stateVariable": false,
                       "storageLocation": "default",
-                      "type": "string memory",
+                      "type": "bytes32",
                       "value": null,
                       "visibility": "internal"
                     },
                     "children": [
                       {
                         "attributes": {
-                          "name": "string",
-                          "type": "string storage pointer"
+                          "name": "bytes32",
+                          "type": "bytes32"
                         },
-                        "id": 157,
+                        "id": 127,
                         "name": "ElementaryTypeName",
-                        "src": "1929:6:0"
+                        "src": "1676:7:0"
                       }
                     ],
-                    "id": 158,
+                    "id": 128,
                     "name": "VariableDeclaration",
-                    "src": "1929:16:0"
+                    "src": "1676:18:0"
                   }
                 ],
-                "id": 159,
+                "id": 129,
                 "name": "ParameterList",
-                "src": "1928:18:0"
+                "src": "1675:20:0"
               },
               {
                 "children": [
                   {
                     "attributes": {
                       "constant": false,
-                      "name": "",
-                      "scope": 184,
+                      "name": "owner",
+                      "scope": 164,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -2184,20 +2691,20 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 160,
+                        "id": 130,
                         "name": "ElementaryTypeName",
-                        "src": "1964:7:0"
+                        "src": "1722:7:0"
                       }
                     ],
-                    "id": 161,
+                    "id": 131,
                     "name": "VariableDeclaration",
-                    "src": "1964:7:0"
+                    "src": "1722:13:0"
                   },
                   {
                     "attributes": {
                       "constant": false,
-                      "name": "",
-                      "scope": 184,
+                      "name": "privateKey",
+                      "scope": 164,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -2210,19 +2717,45 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 162,
+                        "id": 132,
                         "name": "ElementaryTypeName",
-                        "src": "1972:7:0"
+                        "src": "1737:7:0"
                       }
                     ],
-                    "id": 163,
+                    "id": 133,
                     "name": "VariableDeclaration",
-                    "src": "1972:7:0"
+                    "src": "1737:18:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "previousTrackingId",
+                      "scope": 164,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 134,
+                        "name": "ElementaryTypeName",
+                        "src": "1757:7:0"
+                      }
+                    ],
+                    "id": 135,
+                    "name": "VariableDeclaration",
+                    "src": "1757:26:0"
                   }
                 ],
-                "id": 164,
+                "id": 136,
                 "name": "ParameterList",
-                "src": "1963:17:0"
+                "src": "1721:63:0"
               },
               {
                 "children": [
@@ -2230,7 +2763,8 @@
                     "attributes": {
                       "assignments": [
                         166
-                      ]
+                      ],
+                      "falseBody": null
                     },
                     "children": [
                       {
@@ -2240,24 +2774,59 @@
                           "scope": 184,
                           "stateVariable": false,
                           "storageLocation": "default",
-                          "type": "bytes32",
+                          "type": "bool",
                           "value": null,
-                          "visibility": "internal"
+                          "visibility": "internal",
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type_conversion": false
                         },
                         "children": [
                           {
                             "attributes": {
                               "name": "bytes32",
-                              "type": "bytes32"
+                              "type": "function (bytes32) view returns (bool)",
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes32",
+                                  "typeString": "bytes32"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 76,
+                              "value": "hasProof"
                             },
-                            "id": 165,
-                            "name": "ElementaryTypeName",
-                            "src": "1987:7:0"
+                            "id": 137,
+                            "name": "Identifier",
+                            "src": "1795:8:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 128,
+                              "type": "bytes32",
+                              "value": "trackingId"
+                            },
+                            "id": 138,
+                            "name": "Identifier",
+                            "src": "1804:10:0"
                           }
                         ],
-                        "id": 166,
-                        "name": "VariableDeclaration",
-                        "src": "1987:18:0"
+                        "id": 139,
+                        "name": "FunctionCall",
+                        "src": "1795:20:0"
                       },
                       {
                         "attributes": {
@@ -2277,11 +2846,97 @@
                               ],
                               "referencedDeclaration": 29,
                               "type": "mapping(string memory => bytes32)",
-                              "value": "items"
+                              "value": "items",
+                              "assignments": [
+                                141
+                              ]
                             },
-                            "id": 167,
-                            "name": "Identifier",
-                            "src": "2008:5:0"
+                            "id": 145,
+                            "name": "VariableDeclarationStatement",
+                            "src": "1825:51:0",
+                            "children": [
+                              {
+                                "attributes": {
+                                  "constant": false,
+                                  "name": "pe",
+                                  "scope": 164,
+                                  "stateVariable": false,
+                                  "storageLocation": "memory",
+                                  "type": "struct Basic.ProofEntry memory",
+                                  "value": null,
+                                  "visibility": "internal"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "contractScope": null,
+                                      "name": "ProofEntry",
+                                      "referencedDeclaration": 11,
+                                      "type": "struct Basic.ProofEntry storage pointer"
+                                    },
+                                    "id": 140,
+                                    "name": "UserDefinedTypeName",
+                                    "src": "1825:10:0"
+                                  }
+                                ],
+                                "id": 141,
+                                "name": "VariableDeclaration",
+                                "src": "1825:20:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "struct Basic.ProofEntry memory",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_bytes32",
+                                          "typeString": "bytes32"
+                                        }
+                                      ],
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 126,
+                                      "type": "function (bytes32) view returns (struct Basic.ProofEntry memory)",
+                                      "value": "getProofInternal"
+                                    },
+                                    "id": 142,
+                                    "name": "Identifier",
+                                    "src": "1848:16:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 128,
+                                      "type": "bytes32",
+                                      "value": "trackingId"
+                                    },
+                                    "id": 143,
+                                    "name": "Identifier",
+                                    "src": "1865:10:0"
+                                  }
+                                ],
+                                "id": 144,
+                                "name": "FunctionCall",
+                                "src": "1848:28:0"
+                              }
+                            ]
                           },
                           {
                             "attributes": {
@@ -2293,19 +2948,218 @@
                               "type": "string memory",
                               "value": "productId"
                             },
-                            "id": 168,
-                            "name": "Identifier",
-                            "src": "2014:9:0"
+                            "id": 150,
+                            "name": "ExpressionStatement",
+                            "src": "1884:16:0",
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "=",
+                                  "type": "bytes32"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 131,
+                                      "type": "bytes32",
+                                      "value": "owner"
+                                    },
+                                    "id": 146,
+                                    "name": "Identifier",
+                                    "src": "1884:5:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "owner",
+                                      "referencedDeclaration": 6,
+                                      "type": "bytes32"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 141,
+                                          "type": "struct Basic.ProofEntry memory",
+                                          "value": "pe"
+                                        },
+                                        "id": 147,
+                                        "name": "Identifier",
+                                        "src": "1892:2:0"
+                                      }
+                                    ],
+                                    "id": 148,
+                                    "name": "MemberAccess",
+                                    "src": "1892:8:0"
+                                  }
+                                ],
+                                "id": 149,
+                                "name": "Assignment",
+                                "src": "1884:16:0"
+                              }
+                            ]
+                          },
+                          {
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "=",
+                                  "type": "bytes32"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 133,
+                                      "type": "bytes32",
+                                      "value": "privateKey"
+                                    },
+                                    "id": 151,
+                                    "name": "Identifier",
+                                    "src": "1908:10:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "privateKey",
+                                      "referencedDeclaration": 8,
+                                      "type": "bytes32"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 141,
+                                          "type": "struct Basic.ProofEntry memory",
+                                          "value": "pe"
+                                        },
+                                        "id": 152,
+                                        "name": "Identifier",
+                                        "src": "1921:2:0"
+                                      }
+                                    ],
+                                    "id": 153,
+                                    "name": "MemberAccess",
+                                    "src": "1921:13:0"
+                                  }
+                                ],
+                                "id": 154,
+                                "name": "Assignment",
+                                "src": "1908:26:0"
+                              }
+                            ],
+                            "id": 155,
+                            "name": "ExpressionStatement",
+                            "src": "1908:26:0"
+                          },
+                          {
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "=",
+                                  "type": "bytes32"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 135,
+                                      "type": "bytes32",
+                                      "value": "previousTrackingId"
+                                    },
+                                    "id": 156,
+                                    "name": "Identifier",
+                                    "src": "1942:18:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "previousTrackingId",
+                                      "referencedDeclaration": 10,
+                                      "type": "bytes32"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 141,
+                                          "type": "struct Basic.ProofEntry memory",
+                                          "value": "pe"
+                                        },
+                                        "id": 157,
+                                        "name": "Identifier",
+                                        "src": "1963:2:0"
+                                      }
+                                    ],
+                                    "id": 158,
+                                    "name": "MemberAccess",
+                                    "src": "1963:21:0"
+                                  }
+                                ],
+                                "id": 159,
+                                "name": "Assignment",
+                                "src": "1942:42:0"
+                              }
+                            ],
+                            "id": 160,
+                            "name": "ExpressionStatement",
+                            "src": "1942:42:0"
                           }
                         ],
-                        "id": 169,
-                        "name": "IndexAccess",
-                        "src": "2008:16:0"
+                        "id": 161,
+                        "name": "Block",
+                        "src": "1817:174:0"
                       }
                     ],
-                    "id": 170,
-                    "name": "VariableDeclarationStatement",
-                    "src": "1987:37:0"
+                    "id": 162,
+                    "name": "IfStatement",
+                    "src": "1791:200:0"
                   },
                   {
                     "attributes": {
@@ -2479,14 +3333,14 @@
                     "src": "2081:47:0"
                   }
                 ],
-                "id": 183,
+                "id": 163,
                 "name": "Block",
-                "src": "1981:152:0"
+                "src": "1785:210:0"
               }
             ],
-            "id": 184,
+            "id": 164,
             "name": "FunctionDefinition",
-            "src": "1910:223:0"
+            "src": "1658:337:0"
           },
           {
             "attributes": {
@@ -2496,12 +3350,12 @@
               "modifiers": [
                 null
               ],
-              "name": "getprivateKey",
+              "name": "getRecord",
               "payable": false,
-              "scope": 239,
+              "scope": 247,
               "stateMutability": "view",
               "superFunction": null,
-              "visibility": "internal"
+              "visibility": "public"
             },
             "children": [
               {
@@ -2509,41 +3363,41 @@
                   {
                     "attributes": {
                       "constant": false,
-                      "name": "trackingId",
-                      "scope": 202,
+                      "name": "productId",
+                      "scope": 192,
                       "stateVariable": false,
                       "storageLocation": "default",
-                      "type": "bytes32",
+                      "type": "string memory",
                       "value": null,
                       "visibility": "internal"
                     },
                     "children": [
                       {
                         "attributes": {
-                          "name": "bytes32",
-                          "type": "bytes32"
+                          "name": "string",
+                          "type": "string storage pointer"
                         },
-                        "id": 185,
+                        "id": 165,
                         "name": "ElementaryTypeName",
-                        "src": "2206:7:0"
+                        "src": "2018:6:0"
                       }
                     ],
-                    "id": 186,
+                    "id": 166,
                     "name": "VariableDeclaration",
-                    "src": "2206:18:0"
+                    "src": "2018:16:0"
                   }
                 ],
-                "id": 187,
+                "id": 167,
                 "name": "ParameterList",
-                "src": "2205:20:0"
+                "src": "2017:18:0"
               },
               {
                 "children": [
                   {
                     "attributes": {
                       "constant": false,
-                      "name": "privateKey",
-                      "scope": 202,
+                      "name": "",
+                      "scope": 192,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -2556,25 +3410,54 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 188,
+                        "id": 168,
                         "name": "ElementaryTypeName",
-                        "src": "2252:7:0"
+                        "src": "2053:7:0"
                       }
                     ],
-                    "id": 189,
+                    "id": 169,
                     "name": "VariableDeclaration",
-                    "src": "2252:18:0"
+                    "src": "2053:7:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 192,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 170,
+                        "name": "ElementaryTypeName",
+                        "src": "2061:7:0"
+                      }
+                    ],
+                    "id": 171,
+                    "name": "VariableDeclaration",
+                    "src": "2061:7:0"
                   }
                 ],
-                "id": 190,
+                "id": 172,
                 "name": "ParameterList",
-                "src": "2251:20:0"
+                "src": "2052:17:0"
               },
               {
                 "children": [
                   {
                     "attributes": {
-                      "falseBody": null
+                      "falseBody": null,
+                      "assignments": [
+                        174
+                      ]
                     },
                     "children": [
                       {
@@ -2588,8 +3471,15 @@
                           "names": [
                             null
                           ],
-                          "type": "bool",
-                          "type_conversion": false
+                          "type": "bytes32",
+                          "type_conversion": false,
+                          "constant": false,
+                          "name": "trackingId",
+                          "scope": 192,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "value": null,
+                          "visibility": "internal"
                         },
                         "children": [
                           {
@@ -2604,12 +3494,13 @@
                                 null
                               ],
                               "referencedDeclaration": 68,
-                              "type": "function (bytes32) view returns (bool)",
-                              "value": "hasProof"
+                              "type": "bytes32",
+                              "value": "hasProof",
+                              "name": "bytes32"
                             },
-                            "id": 191,
-                            "name": "Identifier",
-                            "src": "2282:8:0"
+                            "id": 173,
+                            "name": "ElementaryTypeName",
+                            "src": "2076:7:0"
                           },
                           {
                             "attributes": {
@@ -2626,15 +3517,22 @@
                             "src": "2291:10:0"
                           }
                         ],
-                        "id": 193,
-                        "name": "FunctionCall",
-                        "src": "2282:20:0"
+                        "id": 174,
+                        "name": "VariableDeclaration",
+                        "src": "2076:18:0"
                       },
                       {
                         "children": [
                           {
                             "attributes": {
-                              "functionReturnParameters": 190
+                              "functionReturnParameters": 190,
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 29,
+                              "type": "mapping(string memory => bytes32)",
+                              "value": "items"
                             },
                             "children": [
                               {
@@ -2708,29 +3606,222 @@
                                 "src": "2319:39:0"
                               }
                             ],
-                            "id": 198,
-                            "name": "Return",
-                            "src": "2312:46:0"
+                            "id": 175,
+                            "name": "Identifier",
+                            "src": "2097:5:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 166,
+                              "type": "string memory",
+                              "value": "productId"
+                            },
+                            "id": 176,
+                            "name": "Identifier",
+                            "src": "2103:9:0"
                           }
                         ],
-                        "id": 199,
-                        "name": "Block",
-                        "src": "2304:61:0"
+                        "id": 177,
+                        "name": "IndexAccess",
+                        "src": "2097:16:0",
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "bytes32"
+                        }
                       }
                     ],
-                    "id": 200,
-                    "name": "IfStatement",
-                    "src": "2278:87:0"
+                    "id": 178,
+                    "name": "VariableDeclarationStatement",
+                    "src": "2076:37:0"
+                  },
+                  {
+                    "attributes": {
+                      "assignments": [
+                        180
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "record",
+                          "scope": 192,
+                          "stateVariable": false,
+                          "storageLocation": "memory",
+                          "type": "struct Basic.ProofEntry memory",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "contractScope": null,
+                              "name": "ProofEntry",
+                              "referencedDeclaration": 11,
+                              "type": "struct Basic.ProofEntry storage pointer"
+                            },
+                            "id": 179,
+                            "name": "UserDefinedTypeName",
+                            "src": "2119:10:0"
+                          }
+                        ],
+                        "id": 180,
+                        "name": "VariableDeclaration",
+                        "src": "2119:24:0"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "struct Basic.ProofEntry storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 25,
+                              "type": "mapping(bytes32 => struct Basic.ProofEntry storage ref)",
+                              "value": "proofs"
+                            },
+                            "id": 181,
+                            "name": "Identifier",
+                            "src": "2146:6:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 174,
+                              "type": "bytes32",
+                              "value": "trackingId"
+                            },
+                            "id": 182,
+                            "name": "Identifier",
+                            "src": "2153:10:0"
+                          }
+                        ],
+                        "id": 183,
+                        "name": "IndexAccess",
+                        "src": "2146:18:0"
+                      }
+                    ],
+                    "id": 184,
+                    "name": "VariableDeclarationStatement",
+                    "src": "2119:45:0"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 172
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isInlineArray": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "tuple(bytes32,bytes32)"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "owner",
+                              "referencedDeclaration": 6,
+                              "type": "bytes32"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 180,
+                                  "type": "struct Basic.ProofEntry memory",
+                                  "value": "record"
+                                },
+                                "id": 185,
+                                "name": "Identifier",
+                                "src": "2178:6:0"
+                              }
+                            ],
+                            "id": 186,
+                            "name": "MemberAccess",
+                            "src": "2178:12:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "previousTrackingId",
+                              "referencedDeclaration": 10,
+                              "type": "bytes32"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 180,
+                                  "type": "struct Basic.ProofEntry memory",
+                                  "value": "record"
+                                },
+                                "id": 187,
+                                "name": "Identifier",
+                                "src": "2191:6:0"
+                              }
+                            ],
+                            "id": 188,
+                            "name": "MemberAccess",
+                            "src": "2191:25:0"
+                          }
+                        ],
+                        "id": 189,
+                        "name": "TupleExpression",
+                        "src": "2177:40:0"
+                      }
+                    ],
+                    "id": 190,
+                    "name": "Return",
+                    "src": "2170:47:0"
                   }
                 ],
-                "id": 201,
+                "id": 191,
                 "name": "Block",
-                "src": "2272:97:0"
+                "src": "2070:152:0"
               }
             ],
-            "id": 202,
+            "id": 192,
             "name": "FunctionDefinition",
-            "src": "2183:186:0"
+            "src": "1999:223:0"
           },
           {
             "attributes": {
@@ -2740,9 +3831,9 @@
               "modifiers": [
                 null
               ],
-              "name": "getOwner",
+              "name": "getprivateKey",
               "payable": false,
-              "scope": 239,
+              "scope": 247,
               "stateMutability": "view",
               "superFunction": null,
               "visibility": "internal"
@@ -2754,7 +3845,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "trackingId",
-                      "scope": 220,
+                      "scope": 210,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -2767,27 +3858,27 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 203,
+                        "id": 193,
                         "name": "ElementaryTypeName",
-                        "src": "2391:7:0"
+                        "src": "2295:7:0"
                       }
                     ],
-                    "id": 204,
+                    "id": 194,
                     "name": "VariableDeclaration",
-                    "src": "2391:18:0"
+                    "src": "2295:18:0"
                   }
                 ],
-                "id": 205,
+                "id": 195,
                 "name": "ParameterList",
-                "src": "2390:20:0"
+                "src": "2294:20:0"
               },
               {
                 "children": [
                   {
                     "attributes": {
                       "constant": false,
-                      "name": "owner",
-                      "scope": 220,
+                      "name": "privateKey",
+                      "scope": 210,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -2800,19 +3891,19 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 206,
+                        "id": 196,
                         "name": "ElementaryTypeName",
-                        "src": "2437:7:0"
+                        "src": "2341:7:0"
                       }
                     ],
-                    "id": 207,
+                    "id": 197,
                     "name": "VariableDeclaration",
-                    "src": "2437:13:0"
+                    "src": "2341:18:0"
                   }
                 ],
-                "id": 208,
+                "id": 198,
                 "name": "ParameterList",
-                "src": "2436:15:0"
+                "src": "2340:20:0"
               },
               {
                 "children": [
@@ -2847,13 +3938,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 68,
+                              "referencedDeclaration": 76,
                               "type": "function (bytes32) view returns (bool)",
                               "value": "hasProof"
                             },
-                            "id": 209,
+                            "id": 199,
                             "name": "Identifier",
-                            "src": "2462:8:0"
+                            "src": "2371:8:0"
                           },
                           {
                             "attributes": {
@@ -2861,24 +3952,268 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 204,
+                              "referencedDeclaration": 194,
                               "type": "bytes32",
                               "value": "trackingId"
                             },
-                            "id": 210,
+                            "id": 200,
                             "name": "Identifier",
-                            "src": "2471:10:0"
+                            "src": "2380:10:0"
                           }
                         ],
-                        "id": 211,
+                        "id": 201,
                         "name": "FunctionCall",
-                        "src": "2462:20:0"
+                        "src": "2371:20:0"
                       },
                       {
                         "children": [
                           {
                             "attributes": {
-                              "functionReturnParameters": 208
+                              "functionReturnParameters": 198
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "privateKey",
+                                  "referencedDeclaration": 8,
+                                  "type": "bytes32"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "isStructConstructorCall": false,
+                                      "lValueRequested": false,
+                                      "names": [
+                                        null
+                                      ],
+                                      "type": "struct Basic.ProofEntry memory",
+                                      "type_conversion": false
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": [
+                                            {
+                                              "typeIdentifier": "t_bytes32",
+                                              "typeString": "bytes32"
+                                            }
+                                          ],
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 126,
+                                          "type": "function (bytes32) view returns (struct Basic.ProofEntry memory)",
+                                          "value": "getProofInternal"
+                                        },
+                                        "id": 202,
+                                        "name": "Identifier",
+                                        "src": "2408:16:0"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 194,
+                                          "type": "bytes32",
+                                          "value": "trackingId"
+                                        },
+                                        "id": 203,
+                                        "name": "Identifier",
+                                        "src": "2425:10:0"
+                                      }
+                                    ],
+                                    "id": 204,
+                                    "name": "FunctionCall",
+                                    "src": "2408:28:0"
+                                  }
+                                ],
+                                "id": 205,
+                                "name": "MemberAccess",
+                                "src": "2408:39:0"
+                              }
+                            ],
+                            "id": 206,
+                            "name": "Return",
+                            "src": "2401:46:0"
+                          }
+                        ],
+                        "id": 207,
+                        "name": "Block",
+                        "src": "2393:61:0"
+                      }
+                    ],
+                    "id": 208,
+                    "name": "IfStatement",
+                    "src": "2367:87:0"
+                  }
+                ],
+                "id": 209,
+                "name": "Block",
+                "src": "2361:97:0"
+              }
+            ],
+            "id": 210,
+            "name": "FunctionDefinition",
+            "src": "2272:186:0"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "getOwner",
+              "payable": false,
+              "scope": 247,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "trackingId",
+                      "scope": 228,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 211,
+                        "name": "ElementaryTypeName",
+                        "src": "2480:7:0"
+                      }
+                    ],
+                    "id": 212,
+                    "name": "VariableDeclaration",
+                    "src": "2480:18:0"
+                  }
+                ],
+                "id": 213,
+                "name": "ParameterList",
+                "src": "2479:20:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "owner",
+                      "scope": 228,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 214,
+                        "name": "ElementaryTypeName",
+                        "src": "2526:7:0"
+                      }
+                    ],
+                    "id": 215,
+                    "name": "VariableDeclaration",
+                    "src": "2526:13:0"
+                  }
+                ],
+                "id": 216,
+                "name": "ParameterList",
+                "src": "2525:15:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "falseBody": null
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "bool",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes32",
+                                  "typeString": "bytes32"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 76,
+                              "type": "function (bytes32) view returns (bool)",
+                              "value": "hasProof"
+                            },
+                            "id": 217,
+                            "name": "Identifier",
+                            "src": "2551:8:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 212,
+                              "type": "bytes32",
+                              "value": "trackingId"
+                            },
+                            "id": 218,
+                            "name": "Identifier",
+                            "src": "2560:10:0"
+                          }
+                        ],
+                        "id": 219,
+                        "name": "FunctionCall",
+                        "src": "2551:20:0"
+                      },
+                      {
+                        "children": [
+                          {
+                            "attributes": {
+                              "functionReturnParameters": 216
                             },
                             "children": [
                               {
@@ -2919,13 +4254,13 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 118,
+                                          "referencedDeclaration": 126,
                                           "type": "function (bytes32) view returns (struct Basic.ProofEntry memory)",
                                           "value": "getProofInternal"
                                         },
-                                        "id": 212,
+                                        "id": 220,
                                         "name": "Identifier",
-                                        "src": "2499:16:0"
+                                        "src": "2588:16:0"
                                       },
                                       {
                                         "attributes": {
@@ -2933,48 +4268,48 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 204,
+                                          "referencedDeclaration": 212,
                                           "type": "bytes32",
                                           "value": "trackingId"
                                         },
-                                        "id": 213,
+                                        "id": 221,
                                         "name": "Identifier",
-                                        "src": "2516:10:0"
+                                        "src": "2605:10:0"
                                       }
                                     ],
-                                    "id": 214,
+                                    "id": 222,
                                     "name": "FunctionCall",
-                                    "src": "2499:28:0"
+                                    "src": "2588:28:0"
                                   }
                                 ],
-                                "id": 215,
+                                "id": 223,
                                 "name": "MemberAccess",
-                                "src": "2499:34:0"
+                                "src": "2588:34:0"
                               }
                             ],
-                            "id": 216,
+                            "id": 224,
                             "name": "Return",
-                            "src": "2492:41:0"
+                            "src": "2581:41:0"
                           }
                         ],
-                        "id": 217,
+                        "id": 225,
                         "name": "Block",
-                        "src": "2484:56:0"
+                        "src": "2573:56:0"
                       }
                     ],
-                    "id": 218,
+                    "id": 226,
                     "name": "IfStatement",
-                    "src": "2458:82:0"
+                    "src": "2547:82:0"
                   }
                 ],
-                "id": 219,
+                "id": 227,
                 "name": "Block",
-                "src": "2452:92:0"
+                "src": "2541:92:0"
               }
             ],
-            "id": 220,
+            "id": 228,
             "name": "FunctionDefinition",
-            "src": "2373:171:0"
+            "src": "2462:171:0"
           },
           {
             "attributes": {
@@ -2986,7 +4321,7 @@
               ],
               "name": "getPreviousTrackingId",
               "payable": false,
-              "scope": 239,
+              "scope": 247,
               "stateMutability": "view",
               "superFunction": null,
               "visibility": "internal"
@@ -2998,7 +4333,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "trackingId",
-                      "scope": 238,
+                      "scope": 246,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -3011,19 +4346,19 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 221,
+                        "id": 229,
                         "name": "ElementaryTypeName",
-                        "src": "2579:7:0"
+                        "src": "2668:7:0"
                       }
                     ],
-                    "id": 222,
+                    "id": 230,
                     "name": "VariableDeclaration",
-                    "src": "2579:18:0"
+                    "src": "2668:18:0"
                   }
                 ],
-                "id": 223,
+                "id": 231,
                 "name": "ParameterList",
-                "src": "2578:20:0"
+                "src": "2667:20:0"
               },
               {
                 "children": [
@@ -3031,7 +4366,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "previousTrackingId",
-                      "scope": 238,
+                      "scope": 246,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -3044,19 +4379,19 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 224,
+                        "id": 232,
                         "name": "ElementaryTypeName",
-                        "src": "2625:7:0"
+                        "src": "2714:7:0"
                       }
                     ],
-                    "id": 225,
+                    "id": 233,
                     "name": "VariableDeclaration",
-                    "src": "2625:26:0"
+                    "src": "2714:26:0"
                   }
                 ],
-                "id": 226,
+                "id": 234,
                 "name": "ParameterList",
-                "src": "2624:28:0"
+                "src": "2713:28:0"
               },
               {
                 "children": [
@@ -3091,13 +4426,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 68,
+                              "referencedDeclaration": 76,
                               "type": "function (bytes32) view returns (bool)",
                               "value": "hasProof"
                             },
-                            "id": 227,
+                            "id": 235,
                             "name": "Identifier",
-                            "src": "2663:8:0"
+                            "src": "2752:8:0"
                           },
                           {
                             "attributes": {
@@ -3105,24 +4440,24 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 222,
+                              "referencedDeclaration": 230,
                               "type": "bytes32",
                               "value": "trackingId"
                             },
-                            "id": 228,
+                            "id": 236,
                             "name": "Identifier",
-                            "src": "2672:10:0"
+                            "src": "2761:10:0"
                           }
                         ],
-                        "id": 229,
+                        "id": 237,
                         "name": "FunctionCall",
-                        "src": "2663:20:0"
+                        "src": "2752:20:0"
                       },
                       {
                         "children": [
                           {
                             "attributes": {
-                              "functionReturnParameters": 226
+                              "functionReturnParameters": 234
                             },
                             "children": [
                               {
@@ -3163,13 +4498,13 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 118,
+                                          "referencedDeclaration": 126,
                                           "type": "function (bytes32) view returns (struct Basic.ProofEntry memory)",
                                           "value": "getProofInternal"
                                         },
-                                        "id": 230,
+                                        "id": 238,
                                         "name": "Identifier",
-                                        "src": "2700:16:0"
+                                        "src": "2789:16:0"
                                       },
                                       {
                                         "attributes": {
@@ -3177,58 +4512,58 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 222,
+                                          "referencedDeclaration": 230,
                                           "type": "bytes32",
                                           "value": "trackingId"
                                         },
-                                        "id": 231,
+                                        "id": 239,
                                         "name": "Identifier",
-                                        "src": "2717:10:0"
+                                        "src": "2806:10:0"
                                       }
                                     ],
-                                    "id": 232,
+                                    "id": 240,
                                     "name": "FunctionCall",
-                                    "src": "2700:28:0"
+                                    "src": "2789:28:0"
                                   }
                                 ],
-                                "id": 233,
+                                "id": 241,
                                 "name": "MemberAccess",
-                                "src": "2700:47:0"
+                                "src": "2789:47:0"
                               }
                             ],
-                            "id": 234,
+                            "id": 242,
                             "name": "Return",
-                            "src": "2693:54:0"
+                            "src": "2782:54:0"
                           }
                         ],
-                        "id": 235,
+                        "id": 243,
                         "name": "Block",
-                        "src": "2685:69:0"
+                        "src": "2774:69:0"
                       }
                     ],
-                    "id": 236,
+                    "id": 244,
                     "name": "IfStatement",
-                    "src": "2659:95:0"
+                    "src": "2748:95:0"
                   }
                 ],
-                "id": 237,
+                "id": 245,
                 "name": "Block",
-                "src": "2653:105:0"
+                "src": "2742:105:0"
               }
             ],
-            "id": 238,
+            "id": 246,
             "name": "FunctionDefinition",
-            "src": "2548:210:0"
+            "src": "2637:210:0"
           }
         ],
-        "id": 239,
+        "id": 247,
         "name": "ContractDefinition",
-        "src": "49:2712:0"
+        "src": "49:2801:0"
       }
     ],
-    "id": 240,
+    "id": 248,
     "name": "SourceUnit",
-    "src": "0:2762:0"
+    "src": "0:2851:0"
   },
   "compiler": {
     "name": "solc",
@@ -3236,5 +4571,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-12-26T06:01:54.258Z"
+  "updatedAt": "2017-12-26T10:35:58.540Z"
 }

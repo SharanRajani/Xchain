@@ -15,7 +15,6 @@ contract Backtracking is Basic {
       trackingId = p1.previousTrackingId;
       ownerAddresses[count++]=p1.owner;
     }
-    count--;
   }
 
 }

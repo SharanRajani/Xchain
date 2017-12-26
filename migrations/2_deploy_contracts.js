@@ -1,5 +1,5 @@
-var ProofOfProduceQuality = artifacts.require("./ProofOfProduceQuality.sol");
+var Main = artifacts.require("./Main.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(ProofOfProduceQuality);
+  deployer.deploy(Main);
 };

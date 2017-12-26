@@ -19,7 +19,8 @@ contract Login is Basic{
     }
   }
 
-  function getTrackingId() constant returns (bytes32){
+  function getTrackingId(string productId) constant returns (bytes32){
+  trackingId = items[productId];
   return trackingId;
   }
 
