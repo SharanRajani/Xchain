@@ -45,11 +45,11 @@ window.App = {
 
 addProduct: function() {
     main.deployed().then(function(instance) {
-      console.log(instance);
+      // console.log(instance);
       var password = $("#add_password").val();
       var productId = $("#add_productId").val();
-      console.log(password);
-      console.log(productId);
+      // console.log(password);
+      // console.log(productId);
       var t = instance.addProduct.call(password, productId, {from:account,gas:500000});
       var s = instance.addProduct.sendTransaction(password, productId, {from:account,gas:500000});
       return t;
@@ -68,7 +68,7 @@ addProduct: function() {
   registerUser: function() {
       main.deployed().then(function(instance) {
         var password = $("#reg_password").val();
-        console.log(password);
+        // console.log(password);
         var t = instance.registerUser.call(password, {from:account,gas:140000});
         var s = instance.registerUser.sendTransaction(password, {from:account,gas:140000});
         return t;
@@ -79,7 +79,7 @@ addProduct: function() {
     else if(result.toString() == "false"){
         document.getElementById("output2").innerHTML= "Registration Unsuccessful!";
     }
-    console.log(result);
+    // console.log(result);
     // document.getElementById("output1").innerHTML=result.toString();
       });
 
@@ -88,7 +88,7 @@ addProduct: function() {
 
 fetchOwnerHash : function() {
     main.deployed().then(function(instance){
-        console.log(instance);
+        // console.log(instance);
         var password = $("#get_password").val();
         var x =instance.fetchOwnerHash.call(password, {from : account, gas:50000});
         return x;
@@ -103,17 +103,16 @@ transfer : function() {
         var password = $("#trans_password").val();
         var newOwner = $("#trans_address").val();
         var productId = $("#trans_productId").val();
-        return instance.transfer.call(newOwner,password,productId,{from : account, gas:5000000});
-    }).then(function(result){
-        console.log(result);
-        if(result.toString() == "true"){
-            var tx =inst.transfer.sendTransaction(newOwner,password,productId,{from : account, gas:5000000});
+        var tx = instance.transfer.call(newOwner,password,productId,{from : account, gas:5000000});
+            var x = inst.transfer.sendTransaction(newOwner,password,productId,{from : account, gas:5000000});
             return tx;
-        }
     }).then(function(res){
-        if(res){
-            console.log(res);
-        document.getElementById("output4").innerHTML = "transfer Completed";
+        if(res.toString()=="true"){
+            // console.log(res);
+        document.getElementById("output4").innerHTML = "Transfer Completed";
+    }
+    else{
+        document.getElementById("output4").innerHTML = "Transfer Unsuccessful";
     }
 });
 },
