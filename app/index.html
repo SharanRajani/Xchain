@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Dapp</title>
+  <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'> -->
+  <!-- <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'> -->
+	<script src="./app.js"></script>
+	<script src="../node_modules/web3/dist/web3.js" type="text/javascript"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+</head>
+<body>
+	<h2 style="margin:0 0 1em 0">Add Product</h2><br>
+	<label><b>Password:</b></label>
+	<input type="text" id="password">
+	<br><label><b>ProductID:</b></label>
+	<input type="text" id="productId"><br>
+	<!-- <input type="button" value = "submit" id="submit" onclick="App.addProduct()" /> -->
+	<button style="margin:1em 0em 0em 10em" type="button" onclick="App.addProduct()">Add Product</button>
+	<div><br><label><b>Status:</b></label>
+	<span id="output1" style="margin:10em 0em 0em 1em;width:10em;height:3em;background-color:coral;font-size: 1.5em">Placeholder</span>
+	</div>
+	<br>
+	<hr>
+	<h2 style="margin:0 0 1em 0">Check Owner</h2><br>
+	<br><label><b>ProductID:</b></label>
+	<input type="text" id="productIdd"><br>
+	<!-- <input type="button" value = "submit" id="submit" onclick="App.addProduct()" /> -->
+	<button style="margin:1em 0em 0em 10em" type="button" onclick="App.checkOwner()">Check</button><br>
+	<div><br><label><b>OwnerHash:</b></label>
+	<span id="output2" style="margin:10em 0em 0em 1em;width:10em;height:3em;background-color:coral;font-size: 1.5em">Placeholder</span>
+	</div>
+</body>
+</html>
