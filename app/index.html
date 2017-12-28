@@ -1,33 +1,160 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>My Dapp</title>
-  <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'> -->
-  <!-- <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'> -->
-	<script src="./app.js"></script>
-	<script src="../node_modules/web3/dist/web3.js" type="text/javascript"></script>
-	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Roboto+Mono" rel="stylesheet">
+
+	<title>Supply Chain Dapp</title>
+
+	<style type="text/css">
+		*{
+margin:0px;
+padding:0px;
+/*background-color: #8E9191;*/
+}
+
+#main{
+	position: relative;
+	/*display: inline-block;	*/
+}
+
+#content1{
+	position: absolute;
+	margin-left: 4em;
+}
+
+#content2{
+	position: absolute;
+	margin-left: 40em;
+}
+
+#content4{
+	position: absolute;
+	margin-left: 4em;
+	margin-top: 26em;
+}
+
+#content3{
+	position: absolute;
+	margin-left: 75em;
+	/*margin-top: 30em;*/
+}
+
+#content5{
+	position: absolute;
+	margin-left: 40em;
+	margin-top: 26em;
+}
+
+
+.textb{
+	/*background-color: #F2F5F1;*/
+		border: none;
+		border-bottom: 2px solid black;
+}
+.textb:active,hover{
+	/*background-color: #F2F5F1;*/
+		border: none;
+		border-bottom: 4px solid black;
+}
+.textholder{
+margin-top:0.75em;
+margin-left: 0.75em;
+/*background-color: brown;	*/
+}
+
+.labelholder{
+	margin-left: 1em;
+	font-size: 1em;
+}
+
+.texth{
+	font-size: 3em;
+}
+
+.title{
+	margin: 1em 0 -2em 1em;
+}
+
+.formt{
+	font-size: 1.25em;
+}
+</style>
+
+
 </head>
 <body>
-	<h2 style="margin:0 0 1em 0">Add Product</h2><br>
-	<label><b>Password:</b></label>
-	<input type="text" id="password">
-	<br><label><b>ProductID:</b></label>
-	<input type="text" id="productId"><br>
-	<!-- <input type="button" value = "submit" id="submit" onclick="App.addProduct()" /> -->
-	<button style="margin:1em 0em 0em 10em" type="button" onclick="App.addProduct()">Add Product</button>
-	<div><br><label><b>Status:</b></label>
-	<span id="output1" style="margin:10em 0em 0em 1em;width:10em;height:3em;background-color:coral;font-size: 1.5em">Placeholder</span>
+<div id="main">
+
+	<div id="content1">
+		<div class="title"><h2 style="margin:0 1em 1em 0" class="texth">Add Product</h2><br></div>
+		<label class="labelholder "><b><span class="formt">Password:</span></b></label>
+		<div class="textholder">
+		<input type="text" id="add_password" class="textb"></div>
+		<br><label class="labelholder"><b><span class="formt">ProductID:</span></b></label>
+				<div class="textholder"><input type="text" id="add_productId" class="textb"><br></div>
+		<!-- <input type="button" value = "submit" id="submit" onclick="App.addProduct()" /> -->
+		<button style="margin:1em 0em 0em 2em;font-size:1.3em" type="button" onclick="App.addProduct()">Add Product</button>
+		<div><br><label class="labelholder"><span class="formt">Status:</span></label>
+		<span id="output1" style="margin:10em 0em 0em 1em;width:10em;height:3em;background-color:lightgrey;font-size: 1.5em">Placeholder</span>
+		<hr style="width:100em;font-weight:bold;font-color:black;">
+		</div>
 	</div>
-	<br>
-	<hr>
-	<h2 style="margin:0 0 1em 0">Check Owner</h2><br>
-	<br><label><b>ProductID:</b></label>
-	<input type="text" id="productIdd"><br>
-	<!-- <input type="button" value = "submit" id="submit" onclick="App.addProduct()" /> -->
-	<button style="margin:1em 0em 0em 10em" type="button" onclick="App.checkOwner()">Check</button><br>
-	<div><br><label><b>OwnerHash:</b></label>
-	<span id="output2" style="margin:10em 0em 0em 1em;width:10em;height:3em;background-color:coral;font-size: 1.5em">Placeholder</span>
+	<div id="content2">
+		<div class="title"><h2 style="margin:0 1em 1em 0" class="texth">Register User</h2><br></div>
+		<label class="labelholder"><b><span class="formt">Password:</span></b></label>
+		<div class="textholder">
+		<input type="text" id="reg_password" class="textb"></div>
+		<br>
+		<!-- <input type="button" value = "submit" id="submit" onclick="App.addProduct()" /> -->
+		<button style="margin:1em 0em 0em 2em;font-size:1.3em" type="button" onclick="App.addProduct()">Register</button>
+		<div><br><label class="labelholder"><span class="formt">Status:</span></label>
+		<span id="output2" style="margin:10em 0em 0em 1em;width:10em;height:3em;background-color:lightgrey;font-size: 1.5em">Placeholder</span>
+		</div>
 	</div>
+	<div id="content3">
+		<div class="title"><h2 style="margin:0 1em 1em 0" class="texth">Get Owner Address</h2><br></div>
+		<label class="labelholder"><b><span class="formt">Password:</span></b></label>
+		<div class="textholder">
+		<input type="text" id="get_password" class="textb"></div>
+		<br>
+		<!-- <input type="button" value = "submit" id="submit" onclick="App.addProduct()" /> -->
+		<button style="margin:1em 0em 0em 2em;font-size:1.3em" type="button" onclick="App.addProduct()">Get</button>
+		<div><br><label class="labelholder"><span class="formt">Status:</span></label>
+		<span id="output3" style="margin:10em 0em 0em 1em;width:10em;height:3em;background-color:lightgrey;font-size: 1.5em">Placeholder</span>
+		</div>
+	</div>
+	<div id="content4">
+		<div class="title"><h2 style="margin:0 0em 1em -0.5em"class="texth">Transfer Ownership</h2><br></div>
+		<label class="labelholder "><b><span class="formt">Password	:</span></b></label>
+		<div class="textholder">
+		<input type="text" id="trans_password" class="textb"></div>
+		<br><label class="labelholder"><b><span class="formt">ProductID:</span></b></label>
+				<div class="textholder"><input type="text" id="trans_productId" class="textb"><br></div>
+				<br><label class="labelholder"><b><span class="formt">Receiver Address:</span></b></label>
+						<div class="textholder"><input type="text" id="trans_productId" class="textb"><br></div>
+		<!-- <input type="button" value = "submit" id="submit" onclick="App.addProduct()" /> -->
+		<button style="margin:1em 0em 0em 2em;font-size:1.3em" type="button" onclick="App.addProduct()">Add Product</button>
+		<div><br><label class="labelholder"><span class="formt">Status:</span></label>
+		<span id="output4" style="margin:10em 0em 0em 1em;width:10em;height:3em;background-color:lightgrey;font-size: 1.5em">Placeholder</span>
+		</div>
+	</div>
+	<div id="content5">
+		<div class="title"><h2 style="margin:0 1em 1em 0" class="texth">Get Ownership History</h2><br></div>
+		<label class="labelholder"><b><span class="formt">ProductID:</span></b></label>
+		<div class="textholder">
+		<input type="text" id="own_productId" class="textb"></div>
+		<br>
+		<!-- <input type="button" value = "submit" id="submit" onclick="App.addProduct()" /> -->
+		<button style="margin:1em 0em 0em 2em;font-size:1.3em" type="button" onclick="App.addProduct()">Get</button>
+		<div><br><label class="labelholder"><span class="formt">Status:</span></label>
+		<span id="output5" style="margin:10em 0em 0em 1em;width:10em;height:3em;background-color:lightgrey;font-size: 1.5em">Placeholder</span>
+		</div>
+	</div>
+</div>
 </body>
 </html>
