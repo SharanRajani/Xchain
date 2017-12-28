@@ -45,6 +45,7 @@ window.App = {
 
 addProduct: function() {
     main.deployed().then(function(instance) {
+      console.log(instance);
       var password = $("#add_password").val();
       var productId = $("#add_productId").val();
       console.log(password);
@@ -87,30 +88,43 @@ addProduct: function() {
 
 fetchOwnerHash : function() {
     main.deployed().then(function(instance){
-        var password = $("#password").val();
-        return instance.fetchOwnerHash.sendTransaction({from : account, gas:50000});
+        console.log(instance);
+        var password = $("#get_password").val();
+        var x =instance.fetchOwnerHash.call(password, {from : account, gas:50000});
+        return x;
     }).then(function(result){
-        document.getElementById("output4").innerHTML = result.toString();
+        document.getElementById("output3").innerHTML = result.toString();
     });
 },
+
 transfer : function() {
     main.deployed().then(function(instance){
-        var password = $("#password").val();
-        var newOwner = $("#newOwner").val();
-        var productId = $("#productId").val();
-
-        return instance.transfer.sendTransaction(newOwner,password,productId,{from : account, gas:50000});
+        var inst = instance;
+        var password = $("#trans_password").val();
+        var newOwner = $("#trans_address").val();
+        var productId = $("#trans_productId").val();
+        return instance.transfer.call(newOwner,password,productId,{from : account, gas:5000000});
     }).then(function(result){
-        document.getElementById("output5").innerHTML = result.toString();
-    });
+        console.log(result);
+        if(result.toString() == "true"){
+            var tx =inst.transfer.sendTransaction(newOwner,password,productId,{from : account, gas:5000000});
+            return tx;
+        }
+    }).then(function(res){
+        if(res){
+            console.log(res);
+        document.getElementById("output4").innerHTML = "transfer Completed";
+    }
+});
 },
 
 backtracking: function(){
     main.deployed().then(function(instance){
         var productId = $("#productId").val();
-        return instance.track.sendTransaction({from : account, gas:50000});
+        return instance.track.call({from : account, gas:50000});
     }).then(function(result){
-        document.getElementById("output6").innerHTML = result.toString();
+
+        document.getElementById("output5").innerHTML = result.toString();
     });
 }
 
