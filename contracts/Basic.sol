@@ -67,6 +67,23 @@ contract Basic is Mortal {
     }
   }
 
+  function bytes32ToString(bytes32 x) pure internal returns (string) {
+  bytes memory bytesString = new bytes(32);
+  uint charCount = 0;
+  for (uint j = 0; j < 32; j++) {
+      byte char = byte(bytes32(uint(x) * 2 ** (8 * j)));
+      if (char != 0) {
+          bytesString[charCount] = char;
+          charCount++;
+      }
+  }
+  bytes memory bytesStringTrimmed = new bytes(charCount);
+  for (j = 0; j < charCount; j++) {
+      bytesStringTrimmed[j] = bytesString[j];
+  }
+  return string(bytesStringTrimmed);
+}
+
   // returns the proof
   function getProofInternal(bytes32 trackingId) constant internal returns(ProofEntry proof) {
     if (hasProof(trackingId)) {
@@ -76,6 +93,15 @@ contract Basic is Mortal {
     // proof doesn't exist, throw and terminate transaction
     throw;
   }
+
+  function hasRegistered(string password) constant  returns(bool){
+  bytes32 newOwner = keccak256(bytes32ToString(keccak256(password)));
+  if(register[newOwner].owner == "")
+  {
+    return false;
+  }
+  return true;
+ }
 
   function getProof(bytes32 trackingId) constant internal returns(bytes32 owner, bytes32 privateKey, bytes32 previousTrackingId) {
     if (hasProof(trackingId)) {

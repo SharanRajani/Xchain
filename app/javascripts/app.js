@@ -1,5 +1,5 @@
 // Import the page's CSS. Webpack will know what to do with it.
-import "../stylesheets/app.css";
+// import "../stylesheets/app.css";
 
 // import "../node_modules/bootstrap/dist/css/bootstrap.css";
 
@@ -43,43 +43,48 @@ window.App = {
     });
   },
 
-  addProduct: function() {
+addProduct: function() {
     main.deployed().then(function(instance) {
-      console.log(instance);
-      var password = $("#password").val();
-      var productId = $("#productId").val();
+      var password = $("#add_password").val();
+      var productId = $("#add_productId").val();
       console.log(password);
       console.log(productId);
+      var t = instance.addProduct.call(password, productId, {from:account,gas:500000});
       var s = instance.addProduct.sendTransaction(password, productId, {from:account,gas:500000});
-      return s;
-    }).then(function(er){
-        if(er){
-            if()
-      document.getElementById("output1").innerHTML="added successfully";
+      return t;
+    }).then(function(result){
+        if(result.toString() == "true"){
+      document.getElementById("output1").innerHTML=" Product added Successfully!";
+    }
+  else{
+      document.getElementById("output1").innerHTML=" Product add Unsuccessful!";
   }
+  // document.getElementById("output1").innerHTML=result;
     });
 
   },
 
-  checkOwner: function() {
-    main.deployed().then(function(instance) {
-      var productId = $("#productIdd").val();
-      console.log(productId);
-      var s = instance.hasEntry.call(productId, {from:account,gas:50000});
-      return s;
-    }).then(function(er){
-      document.getElementById("output2").innerHTML=er.toString();
-    });
-},
-registerUser : function() {
-    main.deployed().then(function(instance){
-        var password = $("#password").val();
-        return instance.registerUser.sendTransaction(password, {from:account,gas:50000});
-    }).then(function(result){
-        document.getElementById("output3").innerHTML = result.toString();
-    });
-        //TODO: display the error message on screen instead of log, sharan look into it
-},
+  registerUser: function() {
+      main.deployed().then(function(instance) {
+        var password = $("#reg_password").val();
+        console.log(password);
+        var t = instance.registerUser.call(password, {from:account,gas:140000});
+        var s = instance.registerUser.sendTransaction(password, {from:account,gas:140000});
+        return t;
+      }).then(function(result){
+          if(result.toString() == "true"){
+        document.getElementById("output2").innerHTML= "Registration Successful!";
+      }
+    else if(result.toString() == "false"){
+        document.getElementById("output2").innerHTML= "Registration Unsuccessful!";
+    }
+    console.log(result);
+    // document.getElementById("output1").innerHTML=result.toString();
+      });
+
+    },
+
+
 fetchOwnerHash : function() {
     main.deployed().then(function(instance){
         var password = $("#password").val();
