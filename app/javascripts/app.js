@@ -45,21 +45,20 @@ window.App = {
 
   addProduct: function() {
     main.deployed().then(function(instance) {
-      console.log(instance);
+      // console.log(instance);
       var password = $("#add_password").val();
       var productId = $("#add_productId").val();
-      console.log(password);
-      console.log(productId);
-      var s = instance.addProduct.call(password, productId, {from:account,gas:500000});
-      var t = instance.addProduct.sendTransaction(password, productId, {from:account,gas:500000});
-      return s;
-    }).then(function(er){
-        if(er.toString()=="true"){
-
-      document.getElementById("output1").innerHTML="added successfully";
-  }
-  else {
-      document.getElementById("output1").innerHTML="added unsuccessfully";
+      // console.log(password);
+      // console.log(productId);
+      var t = instance.addProduct.call(password, productId, {from:account,gas:500000});
+      var s = instance.addProduct.sendTransaction(password, productId, {from:account,gas:500000});
+      return t;
+    }).then(function(result){
+        if(result.toString() == "true"){
+      document.getElementById("output1").innerHTML=" Product added Successfully!";
+    }
+  else{
+      document.getElementById("output1").innerHTML=" Product add Unsuccessful!";
   }
     });
 
@@ -68,23 +67,29 @@ window.App = {
 registerUser : function() {
     main.deployed().then(function(instance){
         var password = $("#reg_password").val();
-        var s = instance.registerUser.call(password, {from:account, gas:5000000});
-        var t = instance.registerUser.sendTransaction(password, {from:account,gas:5000000});
-        return s;
-    }).then(function(result){
-        if(result.toString() == "true"){
-            document.getElementById("output2").innerHTML = "success";
-        }
-        else {
-            document.getElementById("output2").innerHTML = "no success";
-        }
+        // console.log(password);
+        var t = instance.registerUser.call(password, {from:account,gas:140000});
+        var s = instance.registerUser.sendTransaction(password, {from:account,gas:140000});
+        return t;
+      }).then(function(result){
+          if(result.toString() == "true"){
+        document.getElementById("output2").innerHTML= "Registration Successful!";
+      }
+    else if(result.toString() == "false"){
+        document.getElementById("output2").innerHTML= "Registration Unsuccessful!";
+    }
+    // console.log(result);
+    // document.getElementById("output1").innerHTML=result.toString();
+      });
+
+    },
 
     });
 },
 
 fetchOwnerHash : function() {
     main.deployed().then(function(instance){
-        console.log(instance);
+        // console.log(instance);
         var password = $("#get_password").val();
         var x =instance.fetchOwnerHash.call(password, {from : account, gas:50000});
         return x;
@@ -99,17 +104,17 @@ transfer : function() {
         var password = $("#trans_password").val();
         var newOwner = $("#trans_address").val();
         var productId = $("#trans_productId").val();
-        var s = instance.transfer.call(newOwner,password,productId,{from : account, gas:5000000});
-        var t =inst.transfer.sendTransaction(newOwner,password,productId,{from : account, gas:5000000});
-        return s;
-    }).then(function(result){
-        if(result.toString() == "true"){
-            document.getElementById("output4").innerHTML = "transfer Completed";
-        }
-        else {
-            document.getElementById("output4").innerHTML = "transfer not Completed";
-        }
-
+        var tx = instance.transfer.call(newOwner,password,productId,{from : account, gas:5000000});
+            var x = inst.transfer.sendTransaction(newOwner,password,productId,{from : account, gas:5000000});
+            return tx;
+    }).then(function(res){
+        if(res.toString()=="true"){
+            // console.log(res);
+        document.getElementById("output4").innerHTML = "Transfer Completed";
+    }
+    else{
+        document.getElementById("output4").innerHTML = "Transfer Unsuccessful";
+    }
 });
 },
 
