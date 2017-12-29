@@ -99,13 +99,13 @@ fetchOwnerHash : function() {
 
 transfer : function() {
     main.deployed().then(function(instance){
-        var inst = instance;
+        // var inst = instance;
         var password = $("#trans_password").val();
         var newOwner = $("#trans_address").val();
         var productId = $("#trans_productId").val();
         var tx = instance.transfer.call(newOwner,password,productId,{from : account, gas:5000000});
-            var x = inst.transfer.sendTransaction(newOwner,password,productId,{from : account, gas:5000000});
-            return tx;
+        var x = instance.transfer.sendTransaction(newOwner,password,productId,{from : account, gas:5000000});
+        return tx;
     }).then(function(res){
         if(res.toString()=="true"){
             // console.log(res);
@@ -119,10 +119,11 @@ transfer : function() {
 
 backtracking: function(){
     main.deployed().then(function(instance){
-        var productId = $("#productId").val();
-        return instance.track.call({from : account, gas:50000});
+        var productId = $("#own_productId").val();
+        var r = instance.getOwner.call(productId,{from : account, gas:50000});
+        var t = instance.getOwner.sendTransaction(productId,{from : account, gas:50000});
+        return r;
     }).then(function(result){
-
         document.getElementById("output5").innerHTML = result.toString();
     });
 }

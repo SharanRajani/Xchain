@@ -126,10 +126,16 @@ contract Basic is Mortal {
     }
   }
 
-  function getOwner(bytes32 trackingId) constant internal returns(bytes32 owner) {
-    if (hasProof(trackingId)) {
-      return getProofInternal(trackingId).owner;
-    }
+  // function getOwner(bytes32 trackingId) constant internal returns(bytes32 owner) {
+  //   if (hasProof(trackingId)) {
+  //     return getProofInternal(trackingId).owner;
+  //   }
+  // }
+
+  function getOwner(string productId) public returns(bytes32) {
+    bytes32 trackingId = items[productId];
+    // ProofEntry memory record = proofs[trackingId];
+    return proofs[trackingId].owner;
   }
 
   function getPreviousTrackingId(bytes32 trackingId) constant internal returns(bytes32 previousTrackingId) {
