@@ -43,48 +43,44 @@ window.App = {
     });
   },
 
-addProduct: function() {
+  addProduct: function() {
     main.deployed().then(function(instance) {
       console.log(instance);
       var password = $("#add_password").val();
       var productId = $("#add_productId").val();
       console.log(password);
       console.log(productId);
-      var t = instance.addProduct.call(password, productId, {from:account,gas:500000});
-      var s = instance.addProduct.sendTransaction(password, productId, {from:account,gas:500000});
-      return t;
-    }).then(function(result){
-        if(result.toString() == "true"){
-      document.getElementById("output1").innerHTML=" Product added Successfully!";
-    }
-  else{
-      document.getElementById("output1").innerHTML=" Product add Unsuccessful!";
+      var s = instance.addProduct.call(password, productId, {from:account,gas:500000});
+      var t = instance.addProduct.sendTransaction(password, productId, {from:account,gas:500000});
+      return s;
+    }).then(function(er){
+        if(er.toString()=="true"){
+
+      document.getElementById("output1").innerHTML="added successfully";
   }
-  // document.getElementById("output1").innerHTML=result;
+  else {
+      document.getElementById("output1").innerHTML="added unsuccessfully";
+  }
     });
 
   },
 
-  registerUser: function() {
-      main.deployed().then(function(instance) {
+registerUser : function() {
+    main.deployed().then(function(instance){
         var password = $("#reg_password").val();
-        console.log(password);
-        var t = instance.registerUser.call(password, {from:account,gas:140000});
-        var s = instance.registerUser.sendTransaction(password, {from:account,gas:140000});
-        return t;
-      }).then(function(result){
-          if(result.toString() == "true"){
-        document.getElementById("output2").innerHTML= "Registration Successful!";
-      }
-    else if(result.toString() == "false"){
-        document.getElementById("output2").innerHTML= "Registration Unsuccessful!";
-    }
-    console.log(result);
-    // document.getElementById("output1").innerHTML=result.toString();
-      });
+        var s = instance.registerUser.call(password, {from:account, gas:5000000});
+        var t = instance.registerUser.sendTransaction(password, {from:account,gas:5000000});
+        return s;
+    }).then(function(result){
+        if(result.toString() == "true"){
+            document.getElementById("output2").innerHTML = "success";
+        }
+        else {
+            document.getElementById("output2").innerHTML = "no success";
+        }
 
-    },
-
+    });
+},
 
 fetchOwnerHash : function() {
     main.deployed().then(function(instance){
@@ -103,25 +99,24 @@ transfer : function() {
         var password = $("#trans_password").val();
         var newOwner = $("#trans_address").val();
         var productId = $("#trans_productId").val();
-        return instance.transfer.call(newOwner,password,productId,{from : account, gas:5000000});
+        var s = instance.transfer.call(newOwner,password,productId,{from : account, gas:5000000});
+        var t =inst.transfer.sendTransaction(newOwner,password,productId,{from : account, gas:5000000});
+        return s;
     }).then(function(result){
-        console.log(result);
         if(result.toString() == "true"){
-            var tx =inst.transfer.sendTransaction(newOwner,password,productId,{from : account, gas:5000000});
-            return tx;
+            document.getElementById("output4").innerHTML = "transfer Completed";
         }
-    }).then(function(res){
-        if(res){
-            console.log(res);
-        document.getElementById("output4").innerHTML = "transfer Completed";
-    }
+        else {
+            document.getElementById("output4").innerHTML = "transfer not Completed";
+        }
+
 });
 },
 
 backtracking: function(){
     main.deployed().then(function(instance){
-        var productId = $("#productId").val();
-        return instance.track.call({from : account, gas:50000});
+        var productId = $("#own_productId").val();
+        return instance.get.call(productId,{from : account, gas:5000000});
     }).then(function(result){
 
         document.getElementById("output5").innerHTML = result.toString();

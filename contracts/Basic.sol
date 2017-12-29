@@ -131,7 +131,10 @@ contract Basic is Mortal {
       return getProofInternal(trackingId).owner;
     }
   }
-
+  function get(string productId) public returns (bytes32){
+      bytes32 trackingId = items[productId];
+      return proofs[trackingId].owner ;
+  }
   function getPreviousTrackingId(bytes32 trackingId) constant internal returns(bytes32 previousTrackingId) {
     if (hasProof(trackingId)) {
       return getProofInternal(trackingId).previousTrackingId;
