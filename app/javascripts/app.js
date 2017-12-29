@@ -43,7 +43,7 @@ window.App = {
     });
   },
 
-addProduct: function() {
+  addProduct: function() {
     main.deployed().then(function(instance) {
       // console.log(instance);
       var password = $("#add_password").val();
@@ -60,13 +60,12 @@ addProduct: function() {
   else{
       document.getElementById("output1").innerHTML=" Product add Unsuccessful!";
   }
-  // document.getElementById("output1").innerHTML=result;
     });
 
   },
 
-  registerUser: function() {
-      main.deployed().then(function(instance) {
+registerUser : function() {
+    main.deployed().then(function(instance){
         var password = $("#reg_password").val();
         // console.log(password);
         var t = instance.registerUser.call(password, {from:account,gas:140000});
@@ -85,6 +84,8 @@ addProduct: function() {
 
     },
 
+    });
+},
 
 fetchOwnerHash : function() {
     main.deployed().then(function(instance){

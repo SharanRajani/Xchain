@@ -137,7 +137,7 @@ contract Basic is Mortal {
     // ProofEntry memory record = proofs[trackingId];
     return proofs[trackingId].owner;
   }
-
+  
   function getPreviousTrackingId(bytes32 trackingId) constant internal returns(bytes32 previousTrackingId) {
     if (hasProof(trackingId)) {
       return getProofInternal(trackingId).previousTrackingId;
