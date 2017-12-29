@@ -81,11 +81,7 @@ registerUser : function() {
     // console.log(result);
     // document.getElementById("output1").innerHTML=result.toString();
       });
-
     },
-
-    });
-},
 
 fetchOwnerHash : function() {
     main.deployed().then(function(instance){
@@ -121,11 +117,16 @@ transfer : function() {
 backtracking: function(){
     main.deployed().then(function(instance){
         var productId = $("#own_productId").val();
-        var r = instance.getOwner.call(productId,{from : account, gas:50000});
-        var t = instance.getOwner.sendTransaction(productId,{from : account, gas:50000});
+        var r = instance.track.call(productId,{from : account, gas:1000000});
+        // var t = instance.track.sendTransaction(productId,{from : account, gas:1000000});
         return r;
     }).then(function(result){
-        document.getElementById("output5").innerHTML = result.toString();
+        var i;
+        document.getElementById("output5").innerHTML="<br>";
+        for (i = 0; i < result[1]; i++) {
+        document.getElementById("output5").innerHTML += result[0][i].toString()+"<br>"+"&nbsp&nbsp&nbsp&nbsp";
+        }
+        // document.getElementById("output5").innerHTML = result.toString();
     });
 }
 
